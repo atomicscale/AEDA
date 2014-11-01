@@ -1,5 +1,8 @@
 #include "Modalidade.h"
+<<<<<<< HEAD
 #include "Clube.h"
+=======
+>>>>>>> FETCH_HEAD
 #include <vector>
 
 using namespace std;
@@ -17,7 +20,11 @@ SubModalidade::SubModalidade(string nome, string treinador, int nr_jogadores) {
 
 //////// ALOCA JOGADORES NA SUB-MODALIDADE
 
+<<<<<<< HEAD
 /*bool SubModalidade::alocaJogadoresSub() {
+=======
+bool SubModalidade::alocaJogadoresSub() {
+>>>>>>> FETCH_HEAD
 	for (int i = 0; i < jogadores.size(); i++) {
 		if (jogadores[i]->getModalidade() == nome) {
 			jogadores_sub_modalidade(jogadores[i]);
@@ -26,7 +33,11 @@ SubModalidade::SubModalidade(string nome, string treinador, int nr_jogadores) {
 	}
 	return false;
 
+<<<<<<< HEAD
 }*/
+=======
+}
+>>>>>>> FETCH_HEAD
 
 
 ////////

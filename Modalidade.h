@@ -9,7 +9,11 @@
 using namespace std;
 
 
+<<<<<<< HEAD
 class SubModalidade : public Clube {
+=======
+class SubModalidade: public Clube {
+>>>>>>> FETCH_HEAD
 	string nome;
 	string treinador;
 	int nr_jogadores;
@@ -19,8 +23,12 @@ public:
 	string getNome() {return nome;};
 	string getTreinador() {return treinador;};
 	int getNrJogadores() {return nr_jogadores;};
+<<<<<<< HEAD
 	// bool alocaJogadoresSub();
 
+=======
+	bool alocaJogadoresSub();
+>>>>>>> FETCH_HEAD
 
 };
 
