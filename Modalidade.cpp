@@ -1,13 +1,14 @@
 #include "Modalidade.h"
+<<<<<<< HEAD
+#include "Clube.h"
+=======
+>>>>>>> FETCH_HEAD
 #include <vector>
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
-Modalidade::Modalidade(string nome, int quota) {
+Modalidade::Modalidade(string nome) {
 	this->nome = nome;
-	this->quota = quota;
 
 }
 
@@ -17,35 +18,27 @@ SubModalidade::SubModalidade(string nome, string treinador, int nr_jogadores) {
 	this->nr_jogadores = nr_jogadores;
 }
 
-void Modalidade::ImprimeM(){
-	cout << "Nome: " << nome << endl;
-	cout << "Quota para socios da Modalidade: " << quota << endl;
-	cout << "Sub-Modalidades: " << endl;
-	for(int i = 0; i < sub.size(); i++){
-		cout << i + 1 << " -> " << sub[i]->getNome() << endl;
+//////// ALOCA JOGADORES NA SUB-MODALIDADE
+
+<<<<<<< HEAD
+/*bool SubModalidade::alocaJogadoresSub() {
+=======
+bool SubModalidade::alocaJogadoresSub() {
+>>>>>>> FETCH_HEAD
+	for (int i = 0; i < jogadores.size(); i++) {
+		if (jogadores[i]->getModalidade() == nome) {
+			jogadores_sub_modalidade(jogadores[i]);
+			return true;
+		}
 	}
+	return false;
+
+<<<<<<< HEAD
+}*/
+=======
 }
-
-void SubModalidade::Imprime(){
-	cout << "Nome: " << nome << endl;
-	cout << "Treinador: " << treinador << endl;
-	cout << "Numero Jogadores Inscritos: " << nr_jogadores << endl;
+>>>>>>> FETCH_HEAD
 
 
-}
-
-void SubModalidade::ImprimeJogadores(){
-	cout << "Jogadores que praticam a modalidade: " << endl;
-	for(int i = 0; i <= jogadores_sub_modalidade.size(); i++){
-		cout << i+1 << " -> " << jogadores_sub_modalidade[i]->getNome() << endl;
-	}
-}
-
-
-void Modalidade::adionaSub(SubModalidade &r){
-	ifstream &j;
-
-}
-
-
+////////
 
