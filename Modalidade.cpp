@@ -43,7 +43,7 @@ void SubModalidade::ImprimeJogadores(){
 
 
 void Modalidade::adionaSub(SubModalidade &r){
-	ifstream &j;
+
 
 }
 

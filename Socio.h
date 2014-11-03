@@ -2,37 +2,27 @@
 #define SOCIO_H_
 
 #include <string>
-<<<<<<< Updated upstream
-#include <vector>
-
-=======
->>>>>>> Stashed changes
+#include "Modalidade.h"
 using namespace std;
 
 class Socio {
 	string nome;
-<<<<<<< Updated upstream
-	float quotaT;
+	double total;
 	int nr_modalidades;
-	vector<Modalidade*> modalidS;
-public:
-	Socio(string nome, float quotaT, int nr_modalidades);
-	string getNome() {return nome;};
-	int getnrModalidades() {return modalidS.size();};
-	float getQuotaT();
-	void imprime();
-=======
-	int nr_modalidades;
+	bool dentro_prazo;
 	vector<Modalidade *> mod;
 public:
-	Socio(string nome, int quota);
+	Socio(string nome, int total, int nr_moddalidades, bool dentro_prazo);
 	string getNome() {return nome;};
+	int getNModalidade() {return nr_modalidades;};
+	bool getPrazo() {return dentro_prazo;};
+	void AdicionaModalidade(Modalidade *r);
+	bool RemoveModalidade(string nome);
+	int getMensalidade();
 
->>>>>>> Stashed changes
+
 };
 
 
+
 #endif /* SOCIO_H_ */
-
-
-/* FALTA DATA PARA QUANDO SE ATRASA A PAGAR*/
