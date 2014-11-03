@@ -1,13 +1,14 @@
 #include "Modalidade.h"
+<<<<<<< HEAD
+#include "Clube.h"
+=======
+>>>>>>> FETCH_HEAD
 #include <vector>
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
-Modalidade::Modalidade(string nome, int quota) {
+Modalidade::Modalidade(string nome) {
 	this->nome = nome;
-	this->quota = quota;
 
 }
 
@@ -17,13 +18,20 @@ SubModalidade::SubModalidade(string nome, string treinador, int nr_jogadores) {
 	this->nr_jogadores = nr_jogadores;
 }
 
-void Modalidade::ImprimeM(){
-	cout << "Nome: " << nome << endl;
-	cout << "Quota para socios da Modalidade: " << quota << endl;
-	cout << "Sub-Modalidades: " << endl;
-	for(int i = 0; i < sub.size(); i++){
-		cout << i + 1 << " -> " << sub[i]->getNome() << endl;
+//////// ALOCA JOGADORES NA SUB-MODALIDADE
+
+<<<<<<< HEAD
+/*bool SubModalidade::alocaJogadoresSub() {
+=======
+bool SubModalidade::alocaJogadoresSub() {
+>>>>>>> FETCH_HEAD
+	for (int i = 0; i < jogadores.size(); i++) {
+		if (jogadores[i]->getModalidade() == nome) {
+			jogadores_sub_modalidade(jogadores[i]);
+			return true;
+		}
 	}
+<<<<<<< HEAD
 }
 
 void SubModalidade::Imprime(){
@@ -44,8 +52,16 @@ void SubModalidade::ImprimeJogadores(){
 
 void Modalidade::adionaSub(SubModalidade &r){
 
+=======
+	return false;
+>>>>>>> FETCH_HEAD
 
+<<<<<<< HEAD
+}*/
+=======
 }
+>>>>>>> FETCH_HEAD
 
 
+////////
 

@@ -1,8 +1,8 @@
 #include "Clube.h"
+#include "Jogador.h"
 #include <vector>
 #include <string>
 #include <fstream>
-#include <iostream>
 
 using namespace std;
 
@@ -12,26 +12,18 @@ Clube::Clube(string nome, string Presidente, int saldo) {
 	this->saldo = saldo;
 }
 
-
-void Clube::Imprime(){
-	cout << "Nome do Clube: " << nome << endl;
-	cout << "Presidente -> " << Presidente << endl;
-	cout << "Saldo -> " << saldo << endl;
-}
-
 //////// ADICIONA NOVO JOGADOR ////////
 
-void Clube::alocaJogadores(ifstream &isJ) {
-	string nome, s, mod,d;
+void Clube::alocaJogadores(istream &isJ) {
+	string nome, s, d;
 	int salario, duracao_contrato;
 	while (!isJ.eof()) {
 		getline(isJ, nome);
-		getline(isJ, mod);
 		getline(isJ, s);
 		salario = atoi(s.c_str());
 		getline(isJ, d);
 		duracao_contrato = atoi(d.c_str());
-		Jogador *temp = new Jogador(nome, mod, salario, duracao_contrato);
+		Jogador *temp = new Jogador(nome, salario, duracao_contrato);
 		jogadores.push_back(temp);
 	}
 
@@ -52,9 +44,8 @@ bool Clube::removeJogador(string nome) {
 
 //////// ADICIONA NOVA MODALIDADE //////////
 
-void Clube::alocaModalidade(ifstream &ivM) {
-
-
+void Clube::alocaModalidade(istream &ivM) {
+		// bool
 }
 
 //////// REMOVE MODALIDADE /////////////
@@ -71,7 +62,7 @@ bool Clube::removeModalidade(string nome) {
 
 //////// ADICIONA SOCIO ///////////////
 
-void Clube::alocaSocio(ifstream &ivS) {
+void Clube::alocaSocio(istream &ivS) {
 	string nome, c;
 	int cota;
 	while(!ivS.eof()){
@@ -95,25 +86,4 @@ bool Clube::removeSocio(string nome) {
 		return false;
 
 }
-
-
-
-//////// RETORNA VETOR COM JOGADORES QUE PRATICAM A MODALIDADE (MOD)
-
-
-vector<Jogador *> Clube::getJogadoresSub(string mod){
-	vector<Jogador *> result;
-	for(int i = 0; i < jogadores.size(); i++){
-		if(jogadores[i]->getModalidade() == mod){
-			result.push_back(jogadores[i]);
-		}
-	}
-	return result;
-}
-
-
-
-
-
-
 

@@ -27,6 +27,7 @@ bool Socio::RemoveModalidade(string nome) {
 	return false;
 }
 
+<<<<<<< HEAD
 int Socio::getMensalidade() {
 
 	if (mod.size() >= 3) {
@@ -47,6 +48,15 @@ int Socio::getMensalidade() {
 			return total;
 		}
 
+=======
+void Socio::imprime(){
+	cout<<"Nome: "<< nome << endl;
+	cout<<"Quota/mês: " << quotaT << endl;
+	cout<<"Modalidade(s) pagante(s): "<<endl;
+	for(unsigned int i=0; i<modalidS.size();i++){
+		 cout<< modalidS[i]->getNome()<< endl;
+		 i++;
+>>>>>>> FETCH_HEAD
 	}
 }
 
