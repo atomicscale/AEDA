@@ -3,8 +3,9 @@
 
 #include <vector>
 #include <string>
-#include "Jogador.h"
+#include <iostream>
 #include "Modalidade.h"
+#include "Jogador.h"
 #include "Socio.h"
 
 using namespace std;
@@ -18,12 +19,14 @@ class Clube {
 	vector<Socio*> socios;
 public:
 	Clube(string nome, string Presidente, int saldo);
-	void alocaJogadores(istream &ivJ);
+	void alocaJogadores(ifstream &ivJ);
 	bool removeJogador(string nome);
-	void alocaModalidade(istream &ivM);
+	void alocaModalidade(ifstream &ivM);
 	bool removeModalidade(string nome);
-	void alocaSocio(istream &ivS);
+	void alocaSocio(ifstream &ivS);
 	bool removeSocio(string nome);
+	vector<Jogador *> getJogadoresSub(string mod);
+	void Imprime();
 
 
 };

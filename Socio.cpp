@@ -19,6 +19,7 @@ float Socio::getQuotaT() {
 		return quotaT;
 }
 
+<<<<<<< Updated upstream
 void Socio::imprime(){
 	cout<<"Nome: "<< nome << endl;
 	cout<<"Quota/mês: " << quotaT << endl;
@@ -27,4 +28,9 @@ void Socio::imprime(){
 		 cout<< modalidS[i]->getNome()<< endl;
 		 i++;
 	}
+=======
+Socio::Socio(string nome, int quota){
+	this->nome=nome;
+	this->quota = quota;
+>>>>>>> Stashed changes
 }
