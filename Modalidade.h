@@ -2,18 +2,13 @@
 #define MODALIDADE_H_
 
 #include "Jogador.h"
-#include "Clube.h"
 #include <vector>
 #include <string>
 
 using namespace std;
 
 
-<<<<<<< HEAD
-class SubModalidade : public Clube {
-=======
-class SubModalidade: public Clube {
->>>>>>> FETCH_HEAD
+class SubModalidade {
 	string nome;
 	string treinador;
 	int nr_jogadores;
@@ -23,24 +18,23 @@ public:
 	string getNome() {return nome;};
 	string getTreinador() {return treinador;};
 	int getNrJogadores() {return nr_jogadores;};
-<<<<<<< HEAD
-	// bool alocaJogadoresSub();
+	void Imprime();
+	void ImprimeJogadores();
 
-=======
-	bool alocaJogadoresSub();
->>>>>>> FETCH_HEAD
 
 };
 
 
 class Modalidade {
 	string nome;
+	float quota;
 	vector<SubModalidade*> sub;
 public:
-	Modalidade(string nome);
+	Modalidade(string nome, int quota);
 	string getNome(){return nome;};
-
-
+	float getCota() {return quota;};
+	void ImprimeM();
+	void adionaSub(SubModalidade &r);
 };
 
 

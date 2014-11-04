@@ -4,7 +4,13 @@
 
 using namespace std;
 
+Data::Data(int dia, int mes,int ano){
+	this-> dia = dia;
+	this-> mes = mes;
+	this-> ano = ano;
+}
+
 void Data::Imprime(){
-	cout << getDia() << " / " << getMes() << " / " << getAno << endl;
+	cout << dia	<< " / " << mes << " / " << ano << endl;
 }
 
