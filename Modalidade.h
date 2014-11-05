@@ -34,7 +34,7 @@ public:
 	string getNome(){return nome;};
 	float getCota() {return quota;};
 	void ImprimeM();
-	void adionaSub(SubModalidade &r);
+	void adicionaSub(SubModalidade &r);
 };
 
 

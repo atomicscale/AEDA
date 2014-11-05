@@ -31,7 +31,6 @@ void SubModalidade::Imprime(){
 	cout << "Treinador: " << treinador << endl;
 	cout << "Numero Jogadores Inscritos: " << nr_jogadores << endl;
 
-
 }
 
 void SubModalidade::ImprimeJogadores(){
@@ -42,7 +41,7 @@ void SubModalidade::ImprimeJogadores(){
 }
 
 
-void Modalidade::adionaSub(SubModalidade &r){
+void Modalidade::adicionaSub(SubModalidade &r){
 
 
 }

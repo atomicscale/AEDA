@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Socio::Socio(string nome, int mensalidade, int nr_moddalidades, bool dentro_prazo) {
+Socio::Socio(string nome, int mensalidade, int nr_modalidades, bool dentro_prazo) {
 	this-> nome = nome;
 	this-> mensalidade = mensalidade;
 	this-> nr_modalidades = nr_modalidades;
@@ -29,6 +29,7 @@ bool Socio::RemoveModalidade(string nome) {
 
 int Socio::getMensalidade() {
 
+	return 0;
 
 }
 

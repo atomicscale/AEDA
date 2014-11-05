@@ -7,18 +7,19 @@
 #include "Modalidade.h"
 #include "Jogador.h"
 #include "Socio.h"
-#include "Data.h"
 
 using namespace std;
 
 class Clube  {
 	string nome;
 	string Presidente;
-	Data data_atual;
 	int saldo;
 	vector<Jogador*> jogadores;
 	vector<Modalidade*> modalidades;
 	vector<Socio*> socios;
+	void criarJogador();
+	void listJogador();
+	void removeJogadorInterface();
 public:
 	Clube(string nome, string Presidente, int saldo);
 	void alocaJogadores(ifstream &ivJ);
@@ -29,6 +30,9 @@ public:
 	bool removeSocio(string nome);
 	vector<Jogador *> getJogadoresSub(string mod);
 	void Imprime();
+	void clubeInterface();
+	void clearStdInAndPressEnterToContinue();
+	
 
 
 };
