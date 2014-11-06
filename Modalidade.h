@@ -8,7 +8,7 @@
 using namespace std;
 
 
-class SubModalidade {
+class SubModalidade { // TODO: tlvez herdar de Modalidade
 	string nome;
 	string treinador;
 	int nr_jogadores;
@@ -30,11 +30,11 @@ class Modalidade {
 	float quota;
 	vector<SubModalidade*> sub;
 public:
-	Modalidade(string nome, int quota);
+	Modalidade(string nome, float quota);
 	string getNome(){return nome;};
 	float getCota() {return quota;};
 	void ImprimeM();
-	void adicionaSub(SubModalidade &r);
+	void adicionaSub(SubModalidade* r);
 };
 
 

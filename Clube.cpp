@@ -40,7 +40,7 @@ void Clube::alocaJogadores(ifstream &isJ) {
 
 bool Clube::removeJogador(string nome) {
 
-	for (int i = 0; i < jogadores.size(); i++) {
+	for (unsigned int i = 0; i < jogadores.size(); i++) {
 		if (jogadores.at(i)->getNome() == nome) {
 			jogadores.erase(jogadores.begin() + i);
 			return true;
@@ -70,7 +70,7 @@ void Clube::alocaModalidade(ifstream &ivM) {
 //////// REMOVE MODALIDADE /////////////
 
 bool Clube::removeModalidade(string nome) {
-	for (int i = 0; i < modalidades.size(); i++) {
+	for (unsigned int i = 0; i < modalidades.size(); i++) {
 			if (modalidades.at(i)->getNome() == nome) {
 				modalidades.erase(modalidades.begin() + i);
 				return true;
@@ -96,7 +96,7 @@ void Clube::alocaSocio(ifstream &ivS) {
 
 //////// REMOVE SOCIO ///////////////
 bool Clube::removeSocio(string nome) {
-	for (int i = 0; i < socios.size(); i++) {
+	for (unsigned int i = 0; i < socios.size(); i++) {
 			if (socios.at(i)->getNome() == nome) {
 				socios.erase(socios.begin() + i);
 				return true;
@@ -113,7 +113,7 @@ bool Clube::removeSocio(string nome) {
 
 vector<Jogador *> Clube::getJogadoresSub(string mod){
 	vector<Jogador *> result;
-	for(int i = 0; i < jogadores.size(); i++){
+	for(unsigned int i = 0; i < jogadores.size(); i++){
 		result.push_back(jogadores[i]);
 	}
 	return result;
@@ -153,6 +153,46 @@ void Clube::criarJogador(){
 	std::cout << "Jogador Adicionado com Sucesso!" << std::endl;
 }
 
+void Clube::criarModalidades(){
+	std::string resposta, modalidade, submodalidade, treinador;
+	float quota;
+	int nr_jogadores;
+	std::cout << "Deseja criar uma modalidade ou uma sub-modalidade? (M/S)" << std::endl;
+	std::cin >> resposta;
+	if (resposta == "m" || resposta == "M"){
+		std::cout << "Introduza o nome da Modalidade: " << std::endl;
+		std::cin >> modalidade;
+		std::cout << "Introduza a Quota: " << std::endl;
+		std::cin >> quota;
+
+		Modalidade* m = new Modalidade(modalidade, quota);
+		modalidades.push_back(m);
+	}
+	else if (resposta == "s" || resposta == "S") {
+		std::cout << "Introduza o nome da Modalidade a procurar: " << std::endl;
+		std::cin >> modalidade;
+		std::cout << "Introduza o nome da Sub-Modalidade: " << std::endl;
+		std::cin >> submodalidade;
+		std::cout << "Introduza o nome do Treinador da Sub-Modalidade" << std::endl;
+		std::cin >> treinador;
+		std::cout << "Introduza o numero de Jogadores da Sub-Modalidade" << std::endl;
+		std::cin >> nr_jogadores;
+
+		for (auto m : modalidades)
+		{
+			if (m->getNome() == modalidade)
+			{
+				SubModalidade* sm = new SubModalidade(submodalidade, treinador, nr_jogadores);
+				m->adicionaSub(sm);
+				break;
+			}
+		}
+	}
+	else
+		std::cout << "Opcao desconhecida. Tente novamente." << std::endl;
+
+
+}
 
 void Clube::clubeInterface()
 {
@@ -256,7 +296,7 @@ void Clube::clubeInterface()
 
 void Clube::listJogador()
 {
-	for (int i = 0; i < jogadores.size(); i++) {
+	for (unsigned int i = 0; i < jogadores.size(); i++) {
 		jogadores[i]->imprime();
 		cout << std::endl;
 	}

@@ -5,7 +5,7 @@
 #include "Modalidade.h"
 using namespace std;
 
-class Socio {
+class Socio { // TODO: adicionar class base Pessoa. 
 	string nome;
 	double mensalidade;
 	int nr_modalidades;

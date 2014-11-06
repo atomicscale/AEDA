@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Jogador {
+class Jogador { // TODO: adicionar class base Pessoa. 
 	string nome;
 	int salario;
 	int duracao_contrato;

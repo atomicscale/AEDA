@@ -18,7 +18,7 @@ void Socio::AdicionaModalidade(Modalidade *r) {
 }
 
 bool Socio::RemoveModalidade(string nome) {
-	for (int i = 0; i < mod.size(); i++) {
+	for (unsigned int i = 0; i < mod.size(); i++) {
 		if (mod[i]->getNome() == nome) {
 			mod.erase(mod.begin() + i);
 			return true;

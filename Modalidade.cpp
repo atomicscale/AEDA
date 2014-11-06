@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Modalidade::Modalidade(string nome, int quota) {
+Modalidade::Modalidade(string nome, float quota) {
 	this->nome = nome;
 	this->quota = quota;
 
@@ -21,7 +21,7 @@ void Modalidade::ImprimeM(){
 	cout << "Nome: " << nome << endl;
 	cout << "Quota para socios da Modalidade: " << quota << endl;
 	cout << "Sub-Modalidades: " << endl;
-	for(int i = 0; i < sub.size(); i++){
+	for (unsigned int i = 0; i < sub.size(); i++){
 		cout << i + 1 << " -> " << sub[i]->getNome() << endl;
 	}
 }
@@ -35,15 +35,15 @@ void SubModalidade::Imprime(){
 
 void SubModalidade::ImprimeJogadores(){
 	cout << "Jogadores que praticam a modalidade: " << endl;
-	for(int i = 0; i <= jogadores_sub_modalidade.size(); i++){
+	for (unsigned int i = 0; i <= jogadores_sub_modalidade.size(); i++){
 		cout << i+1 << " -> " << jogadores_sub_modalidade[i]->getNome() << endl;
 	}
 }
 
 
-void Modalidade::adicionaSub(SubModalidade &r){
+void Modalidade::adicionaSub(SubModalidade* r){
 
-
+	sub.push_back(r);
 }
 
 
