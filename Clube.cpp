@@ -51,13 +51,20 @@ bool Clube::removeJogador(string nome) {
 
 void Clube::removeJogadorInterface(){
 	string nome;
-	std::cout << "Introduza o nome do Jogador a remover: ";
-	std::cin >> nome;
-
-	if (removeJogador(nome))
-		std::cout << "Jogador Removido Com Sucesso!" << std::endl;
+	if (jogadores.size() == 0)
+	{
+		std::cout << "Nenhum Jogador Encontrado" << std::endl;
+	}
 	else
-		std::cout << "Jogador nao encontrado!" << std::endl;
+	{
+		std::cout << "Introduza o nome do Jogador a remover: ";
+		std::cin >> nome;
+
+		if (removeJogador(nome))
+			std::cout << "Jogador Removido Com Sucesso!" << std::endl;
+		else
+			std::cout << "Jogador nao encontrado, tente novamente!" << std::endl;
+	}
 }
 
 //////// ADICIONA NOVA MODALIDADE //////////
@@ -77,6 +84,25 @@ bool Clube::removeModalidade(string nome) {
 			}
 		}
 		return false;
+}
+
+void Clube::removeModalidadeInterface(){
+	string nome;
+	if (modalidades.size() == 0)
+	{
+		cout << "Nenhuma Modalidade Encontrada" << std::endl;
+	}
+	else
+	{
+		std::cout << "Introduza o nome da Modalidade a remover: ";
+		std::cin >> nome;
+
+		if (removeModalidade(nome))
+			std::cout << "Modalidade Removida Com Sucesso!" << std::endl;
+		else
+			std::cout << "Modalidade nao encontrada, tente novamente!" << std::endl;
+	}
+	
 }
 
 //////// ADICIONA SOCIO ///////////////
@@ -252,7 +278,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 7:
-				//removerModalidades;
+				removeModalidadeInterface();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 8:
