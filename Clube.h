@@ -26,6 +26,7 @@ class Clube  {
 	void listModalidades();
 	void removeModalidadeInterface();
 	void criarSocios();
+	void listSocios();
 public:
 	Clube(string nome, string Presidente, int saldo);
 	void alocaJogadores(ifstream &ivJ);

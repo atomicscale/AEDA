@@ -221,16 +221,22 @@ void Clube::criarModalidades(){
 
 }
 
-//TODO finish
-/*void Clube::criarSocios(){
+
+void Clube::criarSocios(){
 	string nome;
-	int mensalidade, nr_modalidades;
+	int mensalidade1, mensalidade2, nr_modalidades;
 	bool dentro_prazo;
 	std::cout << "Introduza o nome do Sócio" << std::endl;
 	std::cin >> nome;
+	std::cout << "Introduza o numero de Modalidades do Sócio" << std::endl;
+	std::cin >> nr_modalidades;
+	if (nr_modalidades >= 3)
+		std::cout << "Mensalidade a pagar: " << mensalidade1 << std::endl;
+	else
+		std::cout << "Mensalidade a pagar: " << mensalidade2 << std::endl;
+
 
 }
-*/
 
 void Clube::listJogador()
 {
@@ -245,6 +251,13 @@ void Clube::listModalidades()
 	for (unsigned int i = 0; i < modalidades.size(); i++)
 		modalidades[i]->ImprimeM();
 	cout << std::endl;
+}
+
+void Clube::listSocios()
+{
+	for (unsigned int i = 0; i < socios.size(); i++)
+		socios[i]->imprimeS();
+	std::cout << std::endl;
 }
 
 
@@ -315,7 +328,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 9:
-				//listSocios;
+				listSocios();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 10:

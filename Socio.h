@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Modalidade.h"
+
 using namespace std;
 
 class Socio { // TODO: adicionar class base Pessoa. 
@@ -19,6 +20,7 @@ public:
 	void AdicionaModalidade(Modalidade *r);
 	bool RemoveModalidade(string nome);
 	int getMensalidade();
+	void imprimeS();
 };
 
 

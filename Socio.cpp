@@ -33,3 +33,9 @@ int Socio::getMensalidade() {
 
 }
 
+void Socio::imprimeS(){
+	std::cout << "Nome : " << nome << std::endl;
+	std::cout << "Mensalidade: " << mensalidade << std::endl;
+	std::cout << "Numero de modalidades: " << nr_modalidades << std::endl;
+}
+
