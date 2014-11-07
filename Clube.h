@@ -7,13 +7,15 @@
 #include "Modalidade.h"
 #include "Jogador.h"
 #include "Socio.h"
+#include "Despesa.h"
 
 using namespace std;
 
 class Clube  {
 	string nome;
-	string Presidente;
+	string presidente;
 	int saldo;
+	Despesa despesa;
 	vector<Jogador*> jogadores;
 	vector<Modalidade*> modalidades;
 	vector<Socio*> socios;
@@ -36,9 +38,7 @@ public:
 	void Imprime();
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
-	
-
-
+	vector<Jogador*>& getJogadores() { return jogadores;  }
 };
 
 

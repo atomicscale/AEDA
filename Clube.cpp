@@ -6,16 +6,16 @@
 
 using namespace std;
 
-Clube::Clube(string nome, string Presidente, int saldo) {
+Clube::Clube(string nome, string presidente, int saldo) : despesa(this) {
 	this->nome = nome;
-	this->Presidente = Presidente;
+	this->presidente = presidente;
 	this->saldo = saldo;
 }
 
 
 void Clube::Imprime(){
 	cout << "Nome do Clube -> " << nome << endl;
-	cout << "Presidente -> " << Presidente << endl;
+	cout << "Presidente -> " << presidente << endl;
 	cout << "Saldo -> " << saldo << endl;
 }
 
@@ -258,7 +258,7 @@ void Clube::clubeInterface()
 
 		std::cout << "--- Gestao de um Clube Desportivo ---" << std::endl;
 		std::cout << "Nome: " << nome << std::endl;
-		std::cout << "Presidente: " << Presidente << std::endl;
+		std::cout << "Presidente: " << presidente << std::endl;
 		std::cout << "Saldo: " << saldo << " $" << std::endl;
 		std::cout << "1. Criar Jogadores" << std::endl;
 		std::cout << "2. Ver Jogadores Existentes" << std::endl;

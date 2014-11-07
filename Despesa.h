@@ -1,17 +1,18 @@
 #ifndef DESPESA_H_
 #define DESPESA_H_
 
+#include <vector>
+
+class Clube; // forward declaration
+
 using namespace std;
 
-class Despesa:public Clube {
-	float despesaT;
-	float despesaS;
+class Despesa{
+	Clube* clube;
 public:
-	Despesa(float despesaT,float despesaS);
+	Despesa(Clube* clube);
 	float getdespesaT();
 	float getdespesaS();
-
-
 };
 
 

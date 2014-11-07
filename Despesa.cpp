@@ -1,23 +1,22 @@
+#include "Despesa.h"
 #include "Clube.h"
 using namespace std;
 
-Despesa::Despesa(float despesaT,float despesaS){
-	this->despesaT=despesaT;
-	this->despesaS=despesaS;
+Despesa::Despesa(Clube* clube) : clube(clube) {
 
 }
 
 float Despesa::getdespesaS(){
-	float s;
-	for(int i=0;i<jogadores.size();i++){
-		s+=jogadores[i]->getSalario();
+	float total = 0.0f;
+	for(unsigned int i=0;i<clube->getJogadores().size();i++){
+		total += clube->getJogadores()[i]->getSalario();
 	}
-	return s;
+	return total;
 
 }
 
 float Despesa::getdespesaT(){
 	int despesaE=1000;
 	int despesaD=1000;
-	return s+despesaE+despesaD;
+	return getdespesaS()+despesaE+despesaD;
 }
