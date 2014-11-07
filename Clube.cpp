@@ -132,6 +132,25 @@ bool Clube::removeSocio(string nome) {
 
 }
 
+void Clube::removeSocioInterface(){
+	string nome;
+	if (socios.size() == 0)
+	{
+		cout << "Nenhum Socio Encontrado" << std::endl;
+	}
+	else
+	{
+		std::cout << "Introduza o nome do Socio a remover: ";
+		std::cin >> nome;
+
+		if (removeSocio(nome))
+			std::cout << "Socio Removido Com Sucesso!" << std::endl;
+		else
+			std::cout << "Socio nao encontrado, tente novamente!" << std::endl;
+	}
+
+}
+
 
 
 //////// RETORNA VETOR COM JOGADORES QUE PRATICAM A MODALIDADE (MOD)
@@ -332,11 +351,11 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 10:
-				//atribuirModalidadeaJogador;
+				//atribuirModalidadeaSocio;
 				clearStdInAndPressEnterToContinue(); 
 				break;
 			case 11:
-				//removeSocio;
+				removeSocioInterface();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 12:
