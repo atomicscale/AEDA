@@ -179,6 +179,7 @@ void Clube::criarJogador(){
 	std::cout << "Jogador Adicionado com Sucesso!" << std::endl;
 }
 
+
 void Clube::criarModalidades(){
 	std::string resposta, modalidade, submodalidade, treinador;
 	float quota;
@@ -220,6 +221,34 @@ void Clube::criarModalidades(){
 
 }
 
+//TODO finish
+/*void Clube::criarSocios(){
+	string nome;
+	int mensalidade, nr_modalidades;
+	bool dentro_prazo;
+	std::cout << "Introduza o nome do Sócio" << std::endl;
+	std::cin >> nome;
+
+}
+*/
+
+void Clube::listJogador()
+{
+	for (unsigned int i = 0; i < jogadores.size(); i++) {
+		jogadores[i]->imprime();
+		cout << std::endl;
+	}
+}
+
+void Clube::listModalidades()
+{
+	for (unsigned int i = 0; i < modalidades.size(); i++)
+		modalidades[i]->ImprimeM();
+	cout << std::endl;
+}
+
+
+//Interface
 void Clube::clubeInterface()
 {
 	bool done;
@@ -319,27 +348,5 @@ void Clube::clubeInterface()
 
 
 }
-
-void Clube::listJogador()
-{
-	for (unsigned int i = 0; i < jogadores.size(); i++) {
-		jogadores[i]->imprime();
-		cout << std::endl;
-	}
-}
-
-void Clube::listModalidades()
-{
-	for (unsigned int i = 0; i < modalidades.size(); i++)
-		modalidades[i]->ImprimeM();
-	cout << std::endl;
-}
-
-
-
-
-// Interface
-
-
 
 

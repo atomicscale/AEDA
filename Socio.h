@@ -12,7 +12,7 @@ class Socio { // TODO: adicionar class base Pessoa.
 	bool dentro_prazo;
 	vector<Modalidade *> mod;
 public:
-	Socio(string nome, int mensalidade, int nr_moddalidades, bool dentro_prazo);
+	Socio(string nome, int mensalidade, int nr_modalidades, bool dentro_prazo);
 	string getNome() {return nome;};
 	int getNModalidade() {return nr_modalidades;};
 	bool getPrazo() {return dentro_prazo;};
