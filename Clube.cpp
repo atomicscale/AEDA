@@ -240,7 +240,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 4:
-				//criarModalidades;
+				criarModalidades();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 5:
@@ -248,7 +248,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 6:
-				//listModalidades;
+				listModalidades();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 7:
@@ -302,7 +302,12 @@ void Clube::listJogador()
 	}
 }
 
-
+void Clube::listModalidades()
+{
+	for (unsigned int i = 0; i < modalidades.size(); i++)
+		modalidades[i]->ImprimeM();
+	cout << std::endl;
+}
 
 
 
