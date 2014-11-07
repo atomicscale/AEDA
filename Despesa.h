@@ -3,7 +3,14 @@
 
 using namespace std;
 
-class Despesa {
+class Despesa:public Clube {
+	float despesaT;
+	float despesaS;
+public:
+	Despesa(float despesaT,float despesaS);
+	float getdespesaT();
+	float getdespesaS();
+
 
 };
 
