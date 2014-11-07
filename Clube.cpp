@@ -241,6 +241,8 @@ void Clube::criarModalidades(){
 }
 
 
+/*
+//TODO add prices
 void Clube::criarSocios(){
 	string nome;
 	int mensalidade1, mensalidade2, nr_modalidades;
@@ -256,6 +258,7 @@ void Clube::criarSocios(){
 
 
 }
+*/
 
 void Clube::listJogador()
 {
