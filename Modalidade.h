@@ -21,7 +21,6 @@ public:
 	void Imprime();
 	void ImprimeJogadores();
 
-
 };
 
 
@@ -32,7 +31,7 @@ class Modalidade {
 public:
 	Modalidade(string nome, float quota);
 	string getNome(){return nome;};
-	float getCota() {return quota;};
+	float getQuota() {return quota;};
 	void ImprimeM();
 	void adicionaSub(SubModalidade* r);
 };

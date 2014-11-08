@@ -28,8 +28,25 @@ bool Socio::RemoveModalidade(string nome) {
 }
 
 int Socio::getMensalidade() {
-
-	return 0;
+	double result;
+	for (int i = 0; i < mod.size(); i++){
+		result += mod[i]->getQuota();
+	}
+	if (dentro_prazo == false){
+		if (mod.size() >= 3){
+			result = (result + 5) * 0.95;
+			this->dentro_prazo = true;
+		}
+		else{
+			result += 5;
+		}
+	}
+	else {
+		if (mod.size() < 3){
+			result *= 0.95;
+		}
+	}
+	return result;
 
 }
 

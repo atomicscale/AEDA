@@ -242,7 +242,6 @@ void Clube::criarModalidades(){
 
 
 /*
-//TODO add prices
 void Clube::criarSocios(){
 	string nome;
 	int mensalidade1, mensalidade2, nr_modalidades;
@@ -260,21 +259,32 @@ void Clube::criarSocios(){
 }
 */
 
-void Clube::listJogador()
-{
-	for (unsigned int i = 0; i < jogadores.size(); i++) {
+void Clube::listJogador(){
+	for (unsigned int j = jogadores.size() - 1; j > 0; j--){
+		for (unsigned int i = 0; i < j; i++){
+			if (jogadores[i + 1]->getSalario() < jogadores[i]->getSalario()){
+				swap(jogadores[i], jogadores[i + 1]);
+			}
+		}
+	}
+	for (unsigned int i = 0; i < jogadores.size(); i++){
 		jogadores[i]->imprime();
+		cout << endl;
+	}
+}
+void Clube::listModalidades(){
+	for (unsigned int j = modalidades.size() - 1; j > 0; j--){
+		for (unsigned int i = 0; i < j; i++){
+			if (modalidades[i + 1]->getQuota() < modalidades[i]->getQuota()){
+				swap(modalidades[i], modalidades[i + 1]);
+			}
+		}
+	}
+	for (unsigned int i = 0; i < modalidades.size(); i++){
+		modalidades[i]->ImprimeM();
 		cout << std::endl;
 	}
 }
-
-void Clube::listModalidades()
-{
-	for (unsigned int i = 0; i < modalidades.size(); i++)
-		modalidades[i]->ImprimeM();
-	cout << std::endl;
-}
-
 void Clube::listSocios()
 {
 	for (unsigned int i = 0; i < socios.size(); i++)
