@@ -21,7 +21,9 @@ std::string Pessoa::nomeModalidades()
 {
 	std::stringstream ss;
 	for (size_t i = 0; i < modalidades.size(); ++i){
-		ss << modalidades[i]->getNome() << " ,";
+		ss << modalidades[i]->getNome();
+		if (i != modalidades.size() - 1)
+			ss << ",";
 	}
 	return ss.str();
 }
