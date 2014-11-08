@@ -20,3 +20,9 @@ float Despesa::getdespesaT(){
 	int despesaD=1000;
 	return getdespesaS()+despesaE+despesaD;
 }
+
+void Despesa::Imprime()
+{
+	std::cout << "Despesa de Salarios: " << getdespesaS() << std::endl;
+	std::cout << "Despesa Total:" << std::endl;
+}

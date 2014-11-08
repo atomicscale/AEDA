@@ -459,6 +459,11 @@ void Clube::listSocios()
 	std::cout << std::endl;
 }
 
+void Clube::listDespesas(){
+	for (unsigned int i = 0; i < despesas.size(); i++)
+		despesas[i]->Imprime();
+	std::cout << std::endl;
+}
 
 //Interface
 void Clube::clubeInterface()
@@ -543,7 +548,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 13:
-				//manutencaoDeDespesas;
+				listDespesas();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 14:

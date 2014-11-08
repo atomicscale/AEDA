@@ -13,6 +13,7 @@ public:
 	Despesa(Clube* clube);
 	float getdespesaT();
 	float getdespesaS();
+	void Imprime();
 };
 
 

@@ -20,6 +20,7 @@ class Clube  {
 	vector<Jogador*> jogadores;
 	vector<Modalidade*> modalidades;
 	vector<Socio*> socios;
+	vector <Despesa*> despesas;
 	void criarJogador();
 	void listJogador();
 	void removeJogadorInterface();
@@ -34,6 +35,7 @@ class Clube  {
 	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existant
 	int ModalidadeIndex(string modal);
 	int JogadorIndex(string nomeJogador);
+	void listDespesas();
 public:
 	Clube(string nome, string Presidente, int saldo);
 	void alocaJogadores(ifstream &ivJ);
