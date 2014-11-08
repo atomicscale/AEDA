@@ -286,7 +286,7 @@ void Clube::atribuirModalidadeaSocio(){
 		if  ( socioIndex == -1) throw SocioInexistente(tempSocio);
 		
 
-		std::cout << " Introduza a nome da modalidade a atribuir" << endl;
+		std::cout << "Introduza a nome da modalidade a atribuir" << endl;
 		getline(cin, tempModalidade);
 
 		modalidadeIndex = ModalidadeIndex(tempModalidade);
@@ -310,7 +310,7 @@ void Clube::atribuirModalidadeaSocio(){
 
 	}
 	catch (SocioInexistente &e){
-		cerr << "Erro Sócio : " << e.getName() << " inexistente " << endl;
+		cerr << "Erro o Socio : " << e.getName() << " Nao Existe! " << endl;
 
 	}
 	catch (istream::failure e){
@@ -335,40 +335,51 @@ int Clube::ModalidadeIndex(string modal){
 	for (size_t i = 0; i < modalidades.size(); ++i){
 
 		if (modalidades[i]->getNome() == modal){
-			cout << " Works" << endl;
 			index = i;
 		}
 	}
-	cout << index << endl;
+	std::cout << "Modalidade Adicionada Ao Socio Com Sucesso!" << std::endl;
 	return index;
 
 }
 
 void Clube::listJogador(){
-	for (unsigned int j = jogadores.size() - 1; j > 0; j--){
-		for (unsigned int i = 0; i < j; i++){
-			if (jogadores[i + 1]->getSalario() < jogadores[i]->getSalario()){
-				swap(jogadores[i], jogadores[i + 1]);
+	if (jogadores.empty()){
+		std::cout << "Erro, Nenhum Jogador Encontrado. Adicione um novo Jogador!" << std::endl;
+	}
+	else
+	{
+		for (unsigned int j = jogadores.size() - 1; j > 0; j--){
+			for (unsigned int i = 0; i < j; i++){
+				if (jogadores[i + 1]->getSalario() < jogadores[i]->getSalario()){
+					swap(jogadores[i], jogadores[i + 1]);
+				}
 			}
 		}
-	}
-	for (unsigned int i = 0; i < jogadores.size(); i++){
-		jogadores[i]->imprime();
-		cout << endl;
+		for (unsigned int i = 0; i < jogadores.size(); i++){
+			jogadores[i]->imprime();
+			cout << endl;
+		}
 	}
 }
 void Clube::listModalidades(){
-	/*for (unsigned int j = modalidades.size() - 1; j > 0; j--){
-		for (unsigned int i = 0; i < j; i++){
-			if (modalidades[i + 1]->getQuota() < modalidades[i]->getQuota()){
-				swap(modalidades[i], modalidades[i + 1]);
+	if (modalidades.empty()){
+		std::cout << "Erro, Nenhuma Modalidade Encontrada. Crie Uma Nova Modalidade!" << std::endl;
+	}
+	else
+	{
+		for (unsigned int j = modalidades.size() - 1; j > 0; j--){
+			for (unsigned int i = 0; i < j; i++){
+				if (modalidades[i + 1]->getQuota() < modalidades[i]->getQuota()){
+					swap(modalidades[i], modalidades[i + 1]);
+				}
 			}
+
 		}
-		
-	}*/
-	for (unsigned int i = 0; i < modalidades.size(); i++){
-		modalidades[i]->ImprimeM();
-		cout << std::endl;
+		for (unsigned int i = 0; i < modalidades.size(); i++){
+			modalidades[i]->ImprimeM();
+			cout << std::endl;
+		}
 	}
 }
 void Clube::listSocios()
