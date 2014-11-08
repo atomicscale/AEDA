@@ -8,6 +8,7 @@
 #include "Jogador.h"
 #include "Socio.h"
 #include "Despesa.h"
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -28,6 +29,9 @@ class Clube  {
 	void criarSocios();
 	void listSocios();
 	void removeSocioInterface();
+	void atribuirModalidadeaSocio();
+	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existent Wjiaeiojfaio
+	int ModalidadeIndex(string modal);
 public:
 	Clube(string nome, string Presidente, int saldo);
 	void alocaJogadores(ifstream &ivJ);
@@ -41,6 +45,7 @@ public:
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }
+
 };
 
 

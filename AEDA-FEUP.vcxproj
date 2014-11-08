@@ -76,14 +76,17 @@
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modalidade.cpp" />
+    <ClCompile Include="Pessoa.cpp" />
     <ClCompile Include="Socio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clube.h" />
     <ClInclude Include="Despesa.h" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="insertionSort.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Modalidade.h" />
+    <ClInclude Include="Pessoa.h" />
     <ClInclude Include="sequentialSearch.h" />
     <ClInclude Include="Socio.h" />
   </ItemGroup>

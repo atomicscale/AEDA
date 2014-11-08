@@ -108,13 +108,13 @@ void Clube::removeModalidadeInterface(){
 //////// ADICIONA SOCIO ///////////////
 
 void Clube::alocaSocio(ifstream &ivS) {
-	string nome;
-	int mensalidade, nr_modalidades;
+	string nome, sexo;
+	int idade, nif;
 	bool dentro_prazo;
 	while(!ivS.eof()){
 		getline(ivS,nome);
-		ivS >> mensalidade >> nr_modalidades >> dentro_prazo;
-		Socio *temp = new Socio(nome,mensalidade, nr_modalidades, dentro_prazo);
+		ivS >> idade >> sexo >> nif >> dentro_prazo;
+		Socio *temp = new Socio(nome, idade, sexo, nif, dentro_prazo);
 		socios.push_back(temp);
 	}
 
@@ -241,23 +241,108 @@ void Clube::criarModalidades(){
 }
 
 
-/*
-void Clube::criarSocios(){
-	string nome;
-	int mensalidade1, mensalidade2, nr_modalidades;
-	bool dentro_prazo;
-	std::cout << "Introduza o nome do Sócio" << std::endl;
-	std::cin >> nome;
-	std::cout << "Introduza o numero de Modalidades do Sócio" << std::endl;
-	std::cin >> nr_modalidades;
-	if (nr_modalidades >= 3)
-		std::cout << "Mensalidade a pagar: " << mensalidade1 << std::endl;
-	else
-		std::cout << "Mensalidade a pagar: " << mensalidade2 << std::endl;
 
+void Clube::criarSocios(){
+	string nome, sexo;
+	int idade, nif;
+	bool dentro_prazo;
+	try{
+		std::cout << "Introduza o nome do Socio a atribuir uma modalidade" << endl;
+		cin.ignore();
+		getline(std::cin, nome);
+		std::cout << "Introduza a idade do Socio" << endl;
+		std::cin >> idade;
+		std::cout << "Introduza o nif do Socio" << endl;
+		std::cin >> nif;
+		std::cout << "Introduza o sexo do Socio" << endl;
+		std::cin >> sexo;
+		std::cout << "Dentro do Prazo?" << endl;
+		std::cin >> dentro_prazo;
+
+		Socio* socio = new Socio(nome, idade, sexo, nif, dentro_prazo);
+		socios.push_back(socio);
+	}
+	catch (SocioInexistente &e){
+		cerr << "Erro Sócio : " << e.getName() << " inexistente " << endl;
+	}
 
 }
-*/
+
+
+void Clube::atribuirModalidadeaSocio(){
+	string tempModalidade;
+	string tempSocio;
+	int socioIndex = 0;
+	vector<Modalidade *> tempMod;
+	int modalidadeIndex = 0;
+
+	cin.exceptions(istream::failbit | istream::badbit);
+	try{
+		std::cout << "Introduza o nome do Socio a atribuir uma modalidade" << endl;
+		cin.ignore();
+		getline(cin, tempSocio);
+		socioIndex = SocioIndex(tempSocio);
+
+		if  ( socioIndex == -1) throw SocioInexistente(tempSocio);
+		
+
+		std::cout << " Introduza a nome da modalidade a atribuir" << endl;
+		getline(cin, tempModalidade);
+
+		modalidadeIndex = ModalidadeIndex(tempModalidade);
+		
+			tempMod = socios[socioIndex]->getModalidades();
+
+		for (unsigned int i = 0; i < tempMod.size(); i++)
+		{
+			if (tempMod[i]->getNome() == tempModalidade){
+					// throw ModalidadeJaAdiciona ao utilizador
+			}
+
+		}
+		// Adiciona a modalidade ao vetor de modalides temp
+		tempMod.push_back(modalidades[modalidadeIndex]);
+
+
+		// substituir pelo vetor do Sócio
+		socios[socioIndex]->setModalidades(tempMod);
+
+
+	}
+	catch (SocioInexistente &e){
+		cerr << "Erro Sócio : " << e.getName() << " inexistente " << endl;
+
+	}
+	catch (istream::failure e){
+		cerr << "Exception Failbit | Badbit Cin " << endl;
+	}
+}
+
+int Clube::SocioIndex(string nomeSocio){
+	int index = -1;
+	for (size_t i = 0; i < socios.size(); ++i){
+		if (socios[i]->getNome() == nomeSocio){
+			index = i;
+		}
+	}
+	return index;
+
+}
+
+
+int Clube::ModalidadeIndex(string modal){
+	int index = -1;
+	for (size_t i = 0; i < modalidades.size(); ++i){
+
+		if (modalidades[i]->getNome() == modal){
+			cout << " Works" << endl;
+			index = i;
+		}
+	}
+	cout << index << endl;
+	return index;
+
+}
 
 void Clube::listJogador(){
 	for (unsigned int j = jogadores.size() - 1; j > 0; j--){
@@ -273,13 +358,14 @@ void Clube::listJogador(){
 	}
 }
 void Clube::listModalidades(){
-	for (unsigned int j = modalidades.size() - 1; j > 0; j--){
+	/*for (unsigned int j = modalidades.size() - 1; j > 0; j--){
 		for (unsigned int i = 0; i < j; i++){
 			if (modalidades[i + 1]->getQuota() < modalidades[i]->getQuota()){
 				swap(modalidades[i], modalidades[i + 1]);
 			}
 		}
-	}
+		
+	}*/
 	for (unsigned int i = 0; i < modalidades.size(); i++){
 		modalidades[i]->ImprimeM();
 		cout << std::endl;
@@ -288,7 +374,7 @@ void Clube::listModalidades(){
 void Clube::listSocios()
 {
 	for (unsigned int i = 0; i < socios.size(); i++)
-		socios[i]->imprimeS();
+		socios[i]->imprime();
 	std::cout << std::endl;
 }
 
@@ -344,7 +430,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 5:
-				//atribuirModalidadeaJogador;
+				//AtribuirModalidadeaJogador;
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 6:
@@ -356,7 +442,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 8:
-				//criarSocio;
+				criarSocios();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 9:
@@ -364,7 +450,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 10:
-				//atribuirModalidadeaSocio;
+				atribuirModalidadeaSocio();
 				clearStdInAndPressEnterToContinue(); 
 				break;
 			case 11:

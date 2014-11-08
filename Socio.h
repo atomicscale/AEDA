@@ -2,27 +2,21 @@
 #define SOCIO_H_
 
 #include <string>
-#include "Modalidade.h"
+#include "Pessoa.h"
 
 using namespace std;
 
-class Socio { // TODO: adicionar class base Pessoa. 
-	string nome;
+class Socio :public Pessoa { // TODO: adicionar class base Pessoa. 
 	double mensalidade;
-	int nr_modalidades;
 	bool dentro_prazo;
-	vector<Modalidade *> mod;
 public:
-	Socio(string nome, int mensalidade, int nr_modalidades, bool dentro_prazo);
-	string getNome() {return nome;};
-	int getNModalidade() {return nr_modalidades;};
+	Socio(string nome, int idade, string sexo, int nif, bool dentro_prazo) : Pessoa(nome, idade, sexo, nif){
+		this->dentro_prazo = dentro_prazo;
+	}
 	bool getPrazo() {return dentro_prazo;};
-	void AdicionaModalidade(Modalidade *r);
-	bool RemoveModalidade(string nome);
-	int getMensalidade();
-	void imprimeS();
+	double getMensalidade();
+	void imprime();
 };
-
 
 
 #endif /* SOCIO_H_ */
