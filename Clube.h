@@ -30,8 +30,10 @@ class Clube  {
 	void listSocios();
 	void removeSocioInterface();
 	void atribuirModalidadeaSocio();
-	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existent Wjiaeiojfaio
+	void atribuirModalidadeaJogador();
+	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existant
 	int ModalidadeIndex(string modal);
+	int JogadorIndex(string nomeJogador);
 public:
 	Clube(string nome, string Presidente, int saldo);
 	void alocaJogadores(ifstream &ivJ);

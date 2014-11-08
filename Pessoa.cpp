@@ -1,4 +1,5 @@
 #include "Pessoa.h"
+#include "Modalidade.h"
 #include <sstream>
 
 void Pessoa::AdicionaModalidade(Modalidade *r)

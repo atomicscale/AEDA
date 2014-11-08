@@ -14,5 +14,18 @@ public:
 
 };
 
+class JogadorInexistente{
+	string nomeJogador;
+
+public:
+	JogadorInexistente(const string &n){
+		nomeJogador = n;
+	}
+	string getNome(){
+		return nomeJogador;
+	}
+
+};
+
 
 #endif

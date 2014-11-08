@@ -1,4 +1,5 @@
 #include "Socio.h"
+#include "Modalidade.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -35,4 +36,3 @@ void Socio::imprime(){
 	std::cout << "Mensalidade: " << getMensalidade() << std::endl;
 	std::cout << "Modalidades: " << nomeModalidades()  << std::endl;
 }
-

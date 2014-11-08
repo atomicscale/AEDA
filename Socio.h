@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Socio :public Pessoa { // TODO: adicionar class base Pessoa. 
+class Socio :public Pessoa {
 	double mensalidade;
 	bool dentro_prazo;
 public:

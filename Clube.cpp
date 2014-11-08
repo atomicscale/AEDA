@@ -21,20 +21,21 @@ void Clube::Imprime(){
 
 //////// ADICIONA NOVO JOGADOR ////////
 
-void Clube::alocaJogadores(ifstream &isJ) {
-	string nome, s, d;
-	int salario, duracao_contrato;
+/*void Clube::alocaJogadores(ifstream &isJ) {
+	string nome, sexo;
+	int idade, nif, salario, duracao_contrato;
 	while (!isJ.eof()) {
 		getline(isJ, nome);
 		getline(isJ, s);
 		salario = atoi(s.c_str());
 		getline(isJ, d);
 		duracao_contrato = atoi(d.c_str());
-		Jogador *temp = new Jogador(nome, salario, duracao_contrato);
+		Jogador *temp = new Jogador(nome, idade, sexo, nif, salario, duracao_contrato);
 		jogadores.push_back(temp);
 	}
 
 }
+*/
 
 //////// REMOVE JOGADOR //////////////
 
@@ -175,10 +176,16 @@ void Clube::clearStdInAndPressEnterToContinue()
 
 void Clube::criarJogador(){
 
-	std::string name;
-	int salario, duracao_contrato;
+	std::string name, sexo;
+	int idade, nif, salario, duracao_contrato;
 	std::cout << "Introduza o nome do jogador: " << std::endl;
 	std::cin >> name;
+	std::cout << "Introduza o sexo do jogador: " << std::endl;
+	std::cin >> sexo;
+	std::cout << "Introduza o nif do jogador: " << std::endl;
+	std::cin >> nif;
+	std::cout << "Introduza a idade do jogador: " << std::endl;
+	std::cin >> idade;
 	std::cout << "Introduza o salario a oferecer ao jogador: " << std::endl;
 	std::cin >> salario;
 	std::cin.clear();
@@ -192,7 +199,7 @@ void Clube::criarJogador(){
 	std::cin.clear();
 	std::cin.ignore(1000, '\n');
 
-	Jogador* jogador = new Jogador(name, salario, duracao_contrato);
+	Jogador* jogador = new Jogador(name, idade, sexo, nif, salario, duracao_contrato);
 	jogadores.push_back(jogador);
 
 	std::cout << "Jogador Adicionado com Sucesso!" << std::endl;
@@ -213,6 +220,7 @@ void Clube::criarModalidades(){
 
 		Modalidade* m = new Modalidade(modalidade, quota);
 		modalidades.push_back(m);
+		std::cout << "Modalidade criada com Sucesso" << std::endl;
 	}
 	else if (resposta == "s" || resposta == "S") {
 		std::cout << "Introduza o nome da Modalidade a procurar: " << std::endl;
@@ -233,6 +241,7 @@ void Clube::criarModalidades(){
 				break;
 			}
 		}
+		std::cout << "Sub-Modalidade criada com Sucesso!" << std::endl;
 	}
 	else
 		std::cout << "Opcao desconhecida. Tente novamente." << std::endl;
@@ -291,7 +300,7 @@ void Clube::atribuirModalidadeaSocio(){
 
 		modalidadeIndex = ModalidadeIndex(tempModalidade);
 		
-			tempMod = socios[socioIndex]->getModalidades();
+		tempMod = socios[socioIndex]->getModalidades();
 
 		for (unsigned int i = 0; i < tempMod.size(); i++)
 		{
@@ -318,6 +327,56 @@ void Clube::atribuirModalidadeaSocio(){
 	}
 }
 
+void Clube::atribuirModalidadeaJogador(){
+	string tempModalidade;
+	string tempJogador;
+	int jogadorIndex = 0;
+	vector<Modalidade *> tempMod;
+	int modalidadeIndex = 0;
+
+	cin.exceptions(istream::failbit | istream::badbit);
+	try{
+		std::cout << "Introduza o nome do Jogador a atribuir uma modalidade" << endl;
+		cin.ignore();
+		getline(cin, tempJogador);
+		jogadorIndex = JogadorIndex(tempJogador);
+
+		if (jogadorIndex == -1) throw JogadorInexistente(tempJogador);
+
+
+		std::cout << "Introduza a nome da modalidade a atribuir" << endl;
+		getline(cin, tempModalidade);
+
+		modalidadeIndex = ModalidadeIndex(tempModalidade);
+
+		tempMod = jogadores[jogadorIndex]->getModalidades();
+
+		for (unsigned int i = 0; i < tempMod.size(); i++)
+		{
+			if (tempMod[i]->getNome() == tempModalidade){
+				// throw ModalidadeJaAdiciona ao utilizador
+			}
+
+		}
+		// Adiciona a modalidade ao vetor de modalides temp
+		tempMod.push_back(modalidades[modalidadeIndex]);
+
+
+		// substituir pelo vetor do Sócio
+		jogadores[jogadorIndex]->setModalidades(tempMod);
+
+
+	}
+	catch (JogadorInexistente &e){
+		cerr << "Erro o Jogador : " << e.getNome() << " Nao Existe! " << endl;
+
+	}
+	catch (istream::failure e){
+		cerr << "Exception Failbit | Badbit Cin " << endl;
+	}
+
+}
+
 int Clube::SocioIndex(string nomeSocio){
 	int index = -1;
 	for (size_t i = 0; i < socios.size(); ++i){
@@ -338,9 +397,20 @@ int Clube::ModalidadeIndex(string modal){
 			index = i;
 		}
 	}
-	std::cout << "Modalidade Adicionada Ao Socio Com Sucesso!" << std::endl;
+	std::cout << "Modalidade Adicionada Com Sucesso!" << std::endl;
 	return index;
 
+}
+
+
+int Clube::JogadorIndex(string nomeJogador){
+	int index = -1;
+	for (size_t i = 0; i < jogadores.size(); ++i){
+	if (jogadores[i]->getNome() == nomeJogador){
+		index = i;
+		}
+	}
+	return index;
 }
 
 void Clube::listJogador(){
@@ -441,7 +511,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 5:
-				//AtribuirModalidadeaJogador;
+				atribuirModalidadeaJogador();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 6:
