@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -474,6 +475,13 @@ void Clube::clubeInterface()
 		done = false;
 
 		std::cout << "--- Gestao de um Clube Desportivo ---" << std::endl;
+		time_t now = time(0);
+		tm *ltm = localtime(&now);
+		// print various components of tm structure.
+		cout << "Data: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
+		cout << "Hora: " << ltm->tm_hour << ":";
+		cout << 1 + ltm->tm_min << ":";
+		cout << 1 + ltm->tm_sec << endl;
 		std::cout << "Nome: " << nome << std::endl;
 		std::cout << "Presidente: " << presidente << std::endl;
 		std::cout << "Saldo: " << saldo << " $" << std::endl;
