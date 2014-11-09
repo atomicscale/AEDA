@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 	
 	
-	Clube a("AEDA", "Vitor Luis Fidalgo", 0);
+	Clube a("F.C.AEDA 2014", "Vitor Luis Fidalgo", 10000);
 	a.clubeInterface();
 
 	return 0;
