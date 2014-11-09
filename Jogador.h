@@ -14,12 +14,24 @@ class Jogador:public Pessoa{
 	int duracao_contrato;
 	void listJogador();
 public:
+	/*
+	 * @brief constructor with parameters for Jogador
+	 */
 	Jogador(string nome, int idade, string sexo, int nif, int salario, int duracao_contrato) : Pessoa(nome, idade, sexo, nif){
 		this->salario = salario;
 		this->duracao_contrato = duracao_contrato;
 	};
+	/*
+	 * @return salario
+	 */
 	int getSalario() {return salario;};
+	/*
+	 * @return duracao_contrato
+	 */
 	int getDuracaoContrato() {return duracao_contrato;};
+	/*
+	 * @brief Print the Jogador
+	 */
 	void imprime();
 
 };

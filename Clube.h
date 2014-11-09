@@ -37,15 +37,45 @@ class Clube  {
 	int JogadorIndex(string nomeJogador);
 	void listDespesas();
 public:
+	/*
+	 * @brief Construtor with parameters for 'Clube'
+	 * @param name of the club
+	 * @param president of the club
+	 * @param balance of the club
+	 */
 	Clube(string nome, string Presidente, int saldo);
+	/*
+	 * @brief Read a player from a txt file
+	 */
 	void alocaJogadores(ifstream &ivJ);
+	/*
+	 * @return true if the player was removed
+	 */
 	bool removeJogador(string nome);
+	/*
+	 * @brief Read a modality from a txt file
+	 */
 	void alocaModalidade(ifstream &ivM);
+	/*
+	 * @return true if the modality was removed
+	 */
 	bool removeModalidade(string nome);
+	/*
+	 * @brief Read a partner from a txt file
+	 */
 	void alocaSocio(ifstream &ivS);
+	/*
+	 * @return true if the partner was removed
+	 */
 	bool removeSocio(string nome);
+	/*
+	 * @return the players that play mod
+	 */
 	vector<Jogador *> getJogadoresSub(string mod);
 	void Imprime();
+	/*
+	 * @brief Print
+	 */
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }
