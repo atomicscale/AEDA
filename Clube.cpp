@@ -47,6 +47,7 @@ void Clube::Imprime(){
 
 /*void Clube::alocaJogadores(ifstream &isJ) {
 	string nome, sexo;
+
 	int idade, nif, salario, duracao_contrato;
 	while (!isJ.eof()) {
 		getline(isJ, nome);
@@ -60,7 +61,6 @@ void Clube::Imprime(){
 
 }
 */
-
 //////// REMOVE JOGADOR //////////////
 
 bool Clube::removeJogador(string nome) {
@@ -538,7 +538,7 @@ ofstream & Clube::gravarJogadores(ofstream &o){
 }
 
 ofstream & Clube::gravarModalidades(ofstream &o){
-
+	return o;
 }
 
 

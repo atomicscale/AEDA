@@ -24,5 +24,5 @@ float Despesa::getdespesaT(){
 void Despesa::Imprime()
 {
 	std::cout << "Despesa de Salarios: " << getdespesaS() << std::endl;
-	std::cout << "Despesa Total:" << std::endl;
+	std::cout << "Despesa Total:" << getdespesaT() << std::endl;
 }
