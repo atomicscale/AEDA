@@ -34,6 +34,8 @@ public:
 	 */
 	void imprime();
 
+	ofstream& save(ofstream &o); 
+
 };
 
 

@@ -4,8 +4,31 @@
 #include <fstream>
 #include <iostream>
 #include <ctime>
+#include <iomanip>
+
+#define TAB "     "
 
 using namespace std;
+
+void clear(){
+	std::cin.clear();
+	std::cin.ignore(1000, '\n');
+}
+
+
+void header(string title, unsigned int left){
+	std::cout << setw(left) << std::left << TAB << std::endl << title << std::endl << std::endl;
+}
+
+template<typename T>
+void input_field(string label, unsigned int left, T &input){
+	clear();
+	std::cout << TAB << std::setw(left+2) << std::left << label +": ";	std::cin >> input;
+}
+
+void message(string message, unsigned int left){
+	std::cout << std::endl << setw(left) << std::left << message << std::endl;
+}
 
 Clube::Clube(string nome, string presidente, int saldo) : despesa(this) {
 	this->nome = nome;
@@ -15,9 +38,9 @@ Clube::Clube(string nome, string presidente, int saldo) : despesa(this) {
 
 
 void Clube::Imprime(){
-	cout << "Nome do Clube -> " << nome << endl;
-	cout << "Presidente -> " << presidente << endl;
-	cout << "Saldo -> " << saldo << endl;
+	std::cout << "Nome do Clube -> " << nome       << std::endl;
+	std::cout << "Presidente -> "    << presidente << std::endl;
+	std::cout << "Saldo -> "         << saldo      << std::endl;
 }
 
 //////// ADICIONA NOVO JOGADOR ////////
@@ -55,17 +78,16 @@ void Clube::removeJogadorInterface(){
 	string nome;
 	if (jogadores.size() == 0)
 	{
-		std::cout << "Nenhum Jogador Encontrado" << std::endl;
+		message("Nenhum Jogador Encontrado",0);
 	}
 	else
 	{
-		std::cout << "Introduza o nome do Jogador a remover: ";
-		std::cin >> nome;
+		input_field("Introduza o nome do Jogador a remover",0,nome);
 
 		if (removeJogador(nome))
-			std::cout << "Jogador Removido Com Sucesso!" << std::endl;
+			message("Jogador Removido Com Sucesso!",0);
 		else
-			std::cout << "Jogador nao encontrado, tente novamente!" << std::endl;
+			message("Jogador nao encontrado, tente novamente!",0);
 	}
 }
 
@@ -92,17 +114,16 @@ void Clube::removeModalidadeInterface(){
 	string nome;
 	if (modalidades.size() == 0)
 	{
-		cout << "Nenhuma Modalidade Encontrada" << std::endl;
+		message("Nenhuma Modalidade Encontrada",0);
 	}
 	else
 	{
-		std::cout << "Introduza o nome da Modalidade a remover: ";
-		std::cin >> nome;
+		input_field("Introduza o nome da Modalidade a remover",0, nome);
 
 		if (removeModalidade(nome))
-			std::cout << "Modalidade Removida Com Sucesso!" << std::endl;
+			message("Modalidade Removida Com Sucesso!",0);
 		else
-			std::cout << "Modalidade nao encontrada, tente novamente!" << std::endl;
+			message("Modalidade nao encontrada, tente novamente!",0);
 	}
 	
 }
@@ -138,17 +159,16 @@ void Clube::removeSocioInterface(){
 	string nome;
 	if (socios.size() == 0)
 	{
-		cout << "Nenhum Socio Encontrado" << std::endl;
+		message("Nenhum Socio Encontrado",0);
 	}
 	else
 	{
-		std::cout << "Introduza o nome do Socio a remover: ";
-		std::cin >> nome;
+		input_field("Introduza o nome do Socio a remover",0, nome);
 
 		if (removeSocio(nome))
-			std::cout << "Socio Removido Com Sucesso!" << std::endl;
+			message("Socio Removido Com Sucesso!",0);
 		else
-			std::cout << "Socio nao encontrado, tente novamente!" << std::endl;
+			message("Socio nao encontrado, tente novamente!",0);
 	}
 
 }
@@ -168,70 +188,57 @@ vector<Jogador *> Clube::getJogadoresSub(string mod){
 
 void Clube::clearStdInAndPressEnterToContinue()
 {
-	std::cin.clear();
-	std::cin.ignore(1000, '\n');
-	std::cout << "Press Enter to continue...";
+	clear();
+	message("Press Enter to continue...",0);
 	std::cin.get();
 	std::cout << std::endl;
 }
 
 void Clube::criarJogador(){
-
 	std::string name, sexo;
-	int idade, nif, salario, duracao_contrato;
-	std::cout << "Introduza o nome do jogador: " << std::endl;
-	std::cin >> name;
-	std::cout << "Introduza o sexo do jogador: " << std::endl;
-	std::cin >> sexo;
-	std::cout << "Introduza o nif do jogador: " << std::endl;
-	std::cin >> nif;
-	std::cout << "Introduza a idade do jogador: " << std::endl;
-	std::cin >> idade;
-	std::cout << "Introduza o salario a oferecer ao jogador: " << std::endl;
-	std::cin >> salario;
-	std::cin.clear();
-	std::cin.ignore(1000, '\n');
-	std::cout << "Introduza a duracao do contrato do jogador (de 1 a 5)" << std::endl;
-	std::cin >> duracao_contrato;
+	int idade(0), nif(0), salario(0), duracao_contrato(0);
+
+	header("Criar jogador",0);
+	input_field("Nome"                         ,29,name);
+	input_field("Sexo"                         ,29,sexo);
+	input_field("Nif"                          ,29,nif);
+	input_field("Idade"                        ,29,idade);
+	input_field("Salario a oferecer"           ,29,salario);
+	input_field("Duracao do contrato(de 1 a 5)",29,duracao_contrato);
+
 	if (duracao_contrato < 1 || duracao_contrato > 5){
-		cout << "Duracao do Contrato Invalida, Tente Novamente!" << std::endl;
+		message("Duracao do Contrato Invalida, Tente Novamente!",0);
 		return;
 	}
-	std::cin.clear();
-	std::cin.ignore(1000, '\n');
+	clear();
 
 	Jogador* jogador = new Jogador(name, idade, sexo, nif, salario, duracao_contrato);
 	jogadores.push_back(jogador);
 
-	std::cout << "Jogador Adicionado com Sucesso!" << std::endl;
+	message("Jogador Adicionado com Sucesso!",0);
 }
 
 
 void Clube::criarModalidades(){
 	std::string resposta, modalidade, submodalidade, treinador;
-	float quota;
-	int nr_jogadores;
-	std::cout << "Deseja criar uma modalidade ou uma sub-modalidade? (M/S)" << std::endl;
-	std::cin >> resposta;
+	float quota(0);
+	int nr_jogadores(0);
+	input_field("Deseja criar uma modalidade ou uma sub-modalidade? (M/S)", 0, resposta);
 	if (resposta == "m" || resposta == "M"){
-		std::cout << "Introduza o nome da Modalidade: " << std::endl;
-		std::cin >> modalidade;
-		std::cout << "Introduza a Quota: " << std::endl;
-		std::cin >> quota;
+		header("Criar Modalidade",0);
+		input_field("Introduza o nome da Modalidade",30,modalidade);
+		input_field("Introduza a Quota"             ,30,quota);
 
 		Modalidade* m = new Modalidade(modalidade, quota);
 		modalidades.push_back(m);
-		std::cout << "Modalidade criada com Sucesso" << std::endl;
+		message("Modalidade criada com Sucesso", 0);
 	}
 	else if (resposta == "s" || resposta == "S") {
-		std::cout << "Introduza o nome da Modalidade a procurar: " << std::endl;
-		std::cin >> modalidade;
-		std::cout << "Introduza o nome da Sub-Modalidade: " << std::endl;
-		std::cin >> submodalidade;
-		std::cout << "Introduza o nome do Treinador da Sub-Modalidade" << std::endl;
-		std::cin >> treinador;
-		std::cout << "Introduza o numero de Jogadores da Sub-Modalidade" << std::endl;
-		std::cin >> nr_jogadores;
+		header("Criar Sub-Modalidade",0);
+		input_field("Introduza o nome da Modalidade  a procurar"       ,48,modalidade);
+		input_field("Introduza o nome da Sub-Modalidade"               ,48,submodalidade);
+		input_field("Introduza o nome do Treinador da Sub-Modalidade"  ,48,treinador);
+		input_field("Introduza o numero de Jogadores da Sub-Modalidade",48,nr_jogadores);
 
 		for (auto m : modalidades)
 		{
@@ -242,10 +249,10 @@ void Clube::criarModalidades(){
 				break;
 			}
 		}
-		std::cout << "Sub-Modalidade criada com Sucesso!" << std::endl;
+		message("Sub-Modalidade criada com Sucesso!",0);
 	}
 	else
-		std::cout << "Opcao desconhecida. Tente novamente." << std::endl;
+		message("Opcao desconhecida. Tente novamente.",0);
 
 
 }
@@ -256,18 +263,17 @@ void Clube::criarSocios(){
 	string nome, sexo;
 	int idade, nif;
 	bool dentro_prazo;
+
+	system("cls");
 	try{
-		std::cout << "Introduza o nome do Socio a atribuir uma modalidade" << endl;
+		header("Criar socio",0);
+		message("Introduza o nome do Socio a atribuir uma modalidade",0);
 		cin.ignore();
 		getline(std::cin, nome);
-		std::cout << "Introduza a idade do Socio" << endl;
-		std::cin >> idade;
-		std::cout << "Introduza o nif do Socio" << endl;
-		std::cin >> nif;
-		std::cout << "Introduza o sexo do Socio" << endl;
-		std::cin >> sexo;
-		std::cout << "Dentro do Prazo?" << endl;
-		std::cin >> dentro_prazo;
+		input_field("Idade do Socio"  ,16, idade);
+		input_field("Nif do Socio"    ,16,nif);
+		input_field("Sexo do Socio"   ,16, sexo);
+		input_field("Dentro do Prazo?",16,dentro_prazo);
 
 		Socio* socio = new Socio(nome, idade, sexo, nif, dentro_prazo);
 		socios.push_back(socio);
@@ -398,7 +404,7 @@ int Clube::ModalidadeIndex(string modal){
 			index = i;
 		}
 	}
-	std::cout << "Modalidade Adicionada Com Sucesso!" << std::endl;
+	message("Modalidade Adicionada Com Sucesso!",0);
 	return index;
 
 }
@@ -414,9 +420,49 @@ int Clube::JogadorIndex(string nomeJogador){
 	return index;
 }
 
+template<typename T>
+void createTable(string tableName, vector<pair<string,unsigned int>> colunas, vector<T*> content){
+	string vericalSeparator (1,(char)186);
+
+	system("cls");
+	header(tableName,0);
+
+	std::cout << string(1,(char)201)  << string(20,(char)205) << string(1,(char)203) 
+			  << string(6,(char)205)  << string(1,(char)203) 
+			  << string(10,(char)205) << string(1,(char)203) 
+			  << string(10,(char)205) << string(1,(char)203) 
+			  << string(8,(char)205)  << string(1,(char)203) 
+			  << string(9,(char)205)  << string(1,(char)187)  << std::endl;
+
+	for(unsigned int i(0); i < colunas.size(); i++){
+		std::cout << vericalSeparator << setw(colunas[i].second) << std::left << colunas[i].first;
+	}
+	
+	std::cout << vericalSeparator <<std::endl;
+
+	std::cout << string(1,(char)204) << string(20,(char)205) << string(1,(char)206) 
+									 << string(6,(char)205)  << string(1,(char)206) 
+									 << string(10,(char)205) << string(1,(char)206) 
+									 << string(10,(char)205) << string(1,(char)206) 
+									 << string(8,(char)205)  << string(1,(char)206) 
+									 << string(9,(char)205)  << string(1,(char)185) << std::endl;
+
+	for (unsigned int i = 0; i < content.size(); i++){
+			content[i]->imprime();
+	}
+
+	std::cout << string(1,(char)200) << string(20,(char)205) << string(1,(char)202) 
+									 << string(6,(char)205) << string(1,(char)202) 
+									 << string(10,(char)205) << string(1,(char)202) 
+									 << string(10,(char)205) << string(1,(char)202) 
+									 << string(8,(char)205) << string(1,(char)202) 
+									 << string(9,(char)205) << string(1,(char)188) << std::endl << std::endl;
+}
+
 void Clube::listJogador(){
+
 	if (jogadores.empty()){
-		std::cout << "Erro, Nenhum Jogador Encontrado. Adicione um novo Jogador!" << std::endl;
+		message("Erro, Nenhum Jogador Encontrado. Adicione um novo Jogador!",0);
 	}
 	else
 	{
@@ -427,15 +473,16 @@ void Clube::listJogador(){
 				}
 			}
 		}
-		for (unsigned int i = 0; i < jogadores.size(); i++){
-			jogadores[i]->imprime();
-			cout << endl;
-		}
+		
+		pair<string,unsigned int> cols[] = {make_pair("Nome",20),make_pair("Idade",6),make_pair("Nif",10),make_pair("Sexo",10),make_pair("Salario",8),make_pair("Contrato",9)};
+		vector<pair<string,unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string,unsigned int>));
+
+		createTable("Lista de Jogadores", colunas, jogadores);
 	}
 }
 void Clube::listModalidades(){
 	if (modalidades.empty()){
-		std::cout << "Erro, Nenhuma Modalidade Encontrada. Crie Uma Nova Modalidade!" << std::endl;
+		message("Erro, Nenhuma Modalidade Encontrada. Crie Uma Nova Modalidade!",0);
 	}
 	else
 	{
@@ -466,6 +513,70 @@ void Clube::listDespesas(){
 	std::cout << std::endl;
 }
 
+void Clube::saveInfo(){
+	ofstream jogadores_file("jogadores.txt");
+
+	gravarJogadores(jogadores_file);
+
+	jogadores_file.close();
+}
+
+ofstream & Clube::gravarJogadores(ofstream &o){
+
+	o << setw(20) << std::left << "Nome" 
+	  << setw(6)  << std::left << "Idade"
+	  << setw(10) << std::left << "Nif" 
+	  << setw(10) << std::left << "Sexo" 
+	  << setw(8)  << std::left << "Salario" 
+	  << setw(9)  << std::left << "Contrato"<<std::endl;
+
+	for(unsigned int i(0); i < jogadores.size(); i++){
+		jogadores[i]->save(o);
+	}
+
+	return o;
+}
+
+ofstream & Clube::gravarModalidades(ofstream &o){
+
+}
+
+
+string getMonth(int m){
+
+	switch (m)
+	{
+	case 1:
+		return "Janeiro";
+	case 2:
+		return "Fevereiro";
+	case 3:
+		return "Marco";
+	case 4:
+		return "Abril";
+	case 5:
+		return "Maio";
+	case 6:
+		return "Junho";
+	case 7:
+		return "Julho";
+	case 8:
+		return "Agosto";
+	case 9:
+		return "Setembro";
+	case 10:
+		return "Outubro";
+	case 11:
+		return "Novembro";
+	case 12:
+		return "Dezembro";
+	default:
+		break;
+	}
+
+	return "";
+}
+
 //Interface
 void Clube::clubeInterface()
 {
@@ -474,32 +585,32 @@ void Clube::clubeInterface()
 
 		done = false;
 
-		std::cout << "--- Gestao de um Clube Desportivo ---" << std::endl;
+		std::cout << std::setw(60) << std::right << "--- Gestao de um Clube Desportivo ---" << std::endl << std::endl;
 		time_t now = time(0);
 		tm *ltm = localtime(&now);
 		// print various components of tm structure.
-		cout << "Data: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
-		cout << "Hora: " << ltm->tm_hour << ":";
-		cout << 1 + ltm->tm_min << ":";
-		cout << 1 + ltm->tm_sec << endl;
-		std::cout << "Nome: " << nome << std::endl;
-		std::cout << "Presidente: " << presidente << std::endl;
-		std::cout << "Saldo: " << saldo << " $" << std::endl;
-		std::cout << "1. Criar Jogadores" << std::endl;
-		std::cout << "2. Ver Jogadores Existentes" << std::endl;
-		std::cout << "3. Apagar Jogadores" << std::endl;
-		std::cout << "4. Criar Modalidades" << std::endl;
-		std::cout << "5. Atribuir a Jogador uma modalidade" << std::endl;
-		std::cout << "6. Ver Modalidades Existentes" << std::endl;
-		std::cout << "7. Apagar Modalidades" << std::endl;
-		std::cout << "8. Criar Socio" << std::endl;
-		std::cout << "9. Ver Socios Existentes" << std::endl;
-		std::cout << "10. Atribuir a Socio uma modalidade" << std::endl;
-		std::cout << "11. Apagar Socio" << std::endl;
-		std::cout << "12. Manutencao de Quotas" << std::endl;
-		std::cout << "13. Manutencao de Despesas" << std::endl;
-		std::cout << "14. Sair" << std::endl;
-		std::cout << std::endl;
+		std::cout << "Data: " << ltm->tm_mday << " de " << getMonth(1 + ltm->tm_mon) << " de " << 1900 + ltm->tm_year << endl;
+		std::cout << "Hora: " << ltm->tm_hour << ":";
+		std::cout << 1 + ltm->tm_min << ":";
+		std::cout << 1 + ltm->tm_sec << std::endl << std::endl;
+		std::cout << std::setw(12) << std::left << "Nome: " << nome << std::endl;
+		std::cout << std::setw(12) << std::left << "Presidente: " << presidente << std::endl;
+		std::cout << std::setw(12) << std::left << "Saldo: " << saldo << " $" << std::endl << std::endl;
+		std::cout << TAB << "1. Criar Jogadores" << std::endl;
+		std::cout << TAB << "2. Ver Jogadores Existentes" << std::endl;
+		std::cout << TAB << "3. Apagar Jogadores" << std::endl;
+		std::cout << TAB << "4. Criar Modalidades" << std::endl;
+		std::cout << TAB << "5. Atribuir a Jogador uma modalidade" << std::endl;
+		std::cout << TAB << "6. Ver Modalidades Existentes" << std::endl;
+		std::cout << TAB << "7. Apagar Modalidades" << std::endl;
+		std::cout << TAB << "8. Criar Socio" << std::endl;
+		std::cout << TAB << "9. Ver Socios Existentes" << std::endl;
+		std::cout << TAB << "10. Atribuir a Socio uma modalidade" << std::endl;
+		std::cout << TAB << "11. Apagar Socio" << std::endl;
+		std::cout << TAB << "12. Manutencao de Quotas" << std::endl;
+		std::cout << TAB << "13. Manutencao de Despesas" << std::endl;
+		std::cout << TAB << "14. Sair" << std::endl;
+		std::cout << TAB << std::endl;
 
 		int input;
 		std::cout << "Escolha uma opcao: ";
@@ -560,8 +671,8 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 14:
-				std::cout << std::endl;
-				std::cout << "Fechar Programa." << std::endl;
+				message("Fechar Programa.",0);
+				saveInfo();
 				done = true;
 				break;
 			}

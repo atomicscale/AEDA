@@ -1,0 +1,2 @@
+Nome                Idade Nif       Sexo      Salario Contrato 
+Eduardo             21    123123123 Masculino 555     2        

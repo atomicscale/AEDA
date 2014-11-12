@@ -76,6 +76,9 @@ public:
 	/*
 	 * @brief Print
 	 */
+	ofstream & gravarJogadores(ofstream &o);
+	ofstream & gravarModalidades(ofstream &o);
+	void saveInfo();
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }

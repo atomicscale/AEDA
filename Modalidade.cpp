@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -46,5 +47,12 @@ void Modalidade::adicionaSub(SubModalidade* r){
 	sub.push_back(r);
 }
 
+ofstream & Modalidade::save(ofstream &o){
 
+	o << setw(20) << std::left << Modalidade::nome
+		<< setw(6)  << std::left << Modalidade::quota
+		<< setw(10) << std::left << Modalidade::sub.size() <<std::endl;
+
+ return o;
+}
 

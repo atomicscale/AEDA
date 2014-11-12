@@ -67,6 +67,8 @@ public:
 	 * @brief Add SubModalidade to Modalidade
 	 */
 	void adicionaSub(SubModalidade* r);
+
+	ofstream& save(ofstream &o); 
 };
 
 
