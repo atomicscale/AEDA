@@ -36,6 +36,7 @@ class Clube  {
 	int ModalidadeIndex(string modal);
 	int JogadorIndex(string nomeJogador);
 	void listDespesas();
+	//void listQuotas();
 	void loadInfo();
 	void saveInfo();
 	

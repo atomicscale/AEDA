@@ -776,7 +776,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 12:
-				//manutencaoDeQuotas;
+				//listQuotas;
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 13:
@@ -797,5 +797,8 @@ void Clube::clubeInterface()
 
 
 }
+
+
+
 
 
