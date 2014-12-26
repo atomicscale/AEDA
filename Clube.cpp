@@ -5,6 +5,9 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+#include <sstream>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define TAB "     "
 
@@ -459,6 +462,42 @@ void createTable(string tableName, vector<pair<string,unsigned int>> colunas, ve
 									 << string(9,(char)205) << string(1,(char)188) << std::endl << std::endl;
 }
 
+
+template<typename T>
+void createTableM(string tableName, vector<pair<string, unsigned int>> colunas, vector<T*> content){
+	string vericalSeparator(1, (char)186);
+
+	system("cls");
+	header(tableName, 0);
+
+	std::cout << string(1, (char)201) << string(20, (char)205) << string(1, (char)203)
+		<< string(6, (char)205) << string(1, (char)203)
+		<< string(15, (char)205) << string(1, (char)187)
+		 << std::endl;
+
+	for (unsigned int i(0); i < colunas.size(); i++){
+		std::cout << vericalSeparator << setw(colunas[i].second) << std::left << colunas[i].first;
+	}
+
+	std::cout << vericalSeparator << std::endl;
+
+	std::cout << string(1, (char)204) << string(20, (char)205) << string(1, (char)206)
+		<< string(6, (char)205) << string(1, (char)206)
+		<< string(15, (char)205) << string(1, (char)185)
+		 << std::endl;
+
+	for (unsigned int i = 0; i < content.size(); i++){
+		content[i]->ImprimeM();
+	}
+
+	std::cout << string(1, (char)200) << string(20, (char)205) << string(1, (char)202)
+		<< string(6, (char)205) << string(1, (char)202)
+		<< string(10, (char)205) << string(1, (char)202)
+		<< string(10, (char)205) << string(1, (char)202)
+		<< string(8, (char)205) << string(1, (char)202)
+		<< string(13, (char)205) << string(1, (char)188) << std::endl << std::endl;
+}
+
 void Clube::listJogador(){
 
 	if (jogadores.empty()){
@@ -494,10 +533,14 @@ void Clube::listModalidades(){
 			}
 
 		}
-		for (unsigned int i = 0; i < modalidades.size(); i++){
+		pair<string, unsigned int> cols[] = { make_pair("Nome", 20), make_pair("Quota", 6), make_pair("Sub-Modalidades", 10) };
+		vector<pair<string, unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string, unsigned int>));
+
+		createTableM("Lista de Modalidades", colunas, modalidades);
+		/*for (unsigned int i = 0; i < modalidades.size(); i++){
 			modalidades[i]->ImprimeM();
 			cout << std::endl;
-		}
+		}*/
 	}
 }
 void Clube::listSocios()
@@ -515,11 +558,49 @@ void Clube::listDespesas(){
 
 void Clube::saveInfo(){
 	ofstream jogadores_file("jogadores.txt");
+	ofstream modalidades_file("modalidades.txt");
 
 	gravarJogadores(jogadores_file);
+	gravarModalidades(modalidades_file);
 
 	jogadores_file.close();
+	modalidades_file.close();
 }
+
+void Clube::loadInfo(){
+	ifstream jogadores_file("jogadores.txt");
+	ifstream modalidades_file("modalidades.txt");
+
+	lerJogadores(jogadores_file);
+	lerModalidades(modalidades_file);
+	
+	jogadores_file.close();
+	modalidades_file.close();
+}
+
+ifstream & Clube::lerJogadores(ifstream &i){
+	std::string temp;
+	std::vector<std::string> vec;
+	istringstream iss;
+	
+	getline(i, temp);
+
+	while (getline(i, temp)){
+
+		vec.clear();
+		
+		iss = istringstream(temp);
+		
+		copy(istream_iterator<string>(iss),
+			istream_iterator<string>(),
+			back_inserter(vec));
+
+		jogadores.push_back(new Jogador(vec[0], atoi(vec[1].c_str()), vec[3], atoi(vec[2].c_str()), atoi(vec[4].c_str()), atoi(vec[5].c_str())));
+	}
+	
+	return i;
+}
+
 
 ofstream & Clube::gravarJogadores(ofstream &o){
 
@@ -538,7 +619,37 @@ ofstream & Clube::gravarJogadores(ofstream &o){
 }
 
 ofstream & Clube::gravarModalidades(ofstream &o){
+
+	o << setw(20) << std::left << "Nome"
+		<< setw(6) << std::left << "Quota" << std::endl;
+
+	for (unsigned int i(0); i < modalidades.size(); i++){
+		modalidades[i]->save(o);
+	}
 	return o;
+}
+
+ifstream & Clube::lerModalidades(ifstream &i){
+	std::string temp;
+	std::vector<std::string> vec;
+	istringstream iss;
+
+	getline(i, temp);
+
+	while (getline(i, temp)){
+
+		vec.clear();
+
+		iss = istringstream(temp);
+
+		copy(istream_iterator<string>(iss),
+			istream_iterator<string>(),
+			back_inserter(vec));
+
+		modalidades.push_back(new Modalidade(vec[0], atoi(vec[1].c_str())));
+	}
+
+	return i;
 }
 
 
@@ -580,6 +691,8 @@ string getMonth(int m){
 //Interface
 void Clube::clubeInterface()
 {
+
+	loadInfo();
 	bool done;
 	do {
 
@@ -667,7 +780,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 13:
-				listDespesas();
+				//listDespesas();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 14:

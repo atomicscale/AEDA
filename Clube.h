@@ -36,6 +36,9 @@ class Clube  {
 	int ModalidadeIndex(string modal);
 	int JogadorIndex(string nomeJogador);
 	void listDespesas();
+	void loadInfo();
+	void saveInfo();
+	
 public:
 	/*
 	 * @brief Construtor with parameters for 'Clube'
@@ -77,8 +80,9 @@ public:
 	 * @brief Print
 	 */
 	ofstream & gravarJogadores(ofstream &o);
+	ifstream & lerJogadores(ifstream &i);
 	ofstream & gravarModalidades(ofstream &o);
-	void saveInfo();
+	ifstream & lerModalidades(ifstream &i);
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }
