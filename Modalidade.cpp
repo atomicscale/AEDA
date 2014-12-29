@@ -22,9 +22,9 @@ void Modalidade::ImprimeM(){
 	string vericalSeparator(1, (char)186);
 
 	std::cout << vericalSeparator << setw(20) << std::left << Modalidade::getNome()
-		<< vericalSeparator << setw(6) << std::left << Modalidade::getQuota();
-		/*<< vericalSeparator << setw(20) << std::left;
-	for (unsigned int i = 0; i < sub.size(); i++){
+		<< vericalSeparator << setw(6) << std::left << Modalidade::getQuota()
+		<< vericalSeparator << setw(20) << std::left << sub.size() << vericalSeparator << std::endl;
+	/*for (unsigned int i = 0; i < sub.size(); i++){
 		cout << i + 1 << " -> " << sub[i]->getNome() << endl;
 	}*/
 }

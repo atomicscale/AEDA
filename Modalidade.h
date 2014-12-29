@@ -38,6 +38,8 @@ public:
 	 * @brief Print Players
 	 */
 	void ImprimeJogadores();
+	
+
 
 };
 
@@ -67,6 +69,10 @@ public:
 	 * @brief Add SubModalidade to Modalidade
 	 */
 	void adicionaSub(SubModalidade* r);
+
+	vector<SubModalidade *> getSubMod(){
+		return sub;
+	}
 
 	ofstream& save(ofstream &o); 
 };

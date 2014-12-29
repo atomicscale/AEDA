@@ -1,2 +1,4 @@
 Nome                Idade Nif       Sexo      Salario Contrato 
+joao                123   12345     masculino 91      2        
+joao                12341 12354     masculino 1231    2        
 joao                14    1234354   masculino 120000  4        

@@ -27,5 +27,29 @@ public:
 
 };
 
+class InputInvalido{
+	
+public:
+	InputInvalido(){}
+	
+};
+
+
+class ModalidadeInexistente{
+
+public:
+	ModalidadeInexistente(){
+
+	}
+};
+
+class SubModalidadeExistente{
+
+public:
+	SubModalidadeExistente(){
+
+	}
+};
+
 
 #endif
