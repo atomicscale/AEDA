@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <stdio.h>
+#include <cctype>
 
 #define TAB "     "
 
@@ -26,7 +27,8 @@ void header(string title, unsigned int left){
 template<typename T>
 void input_field(string label, unsigned int left, T &input){
 	clear();
-	std::cout << TAB << std::setw(left + 2) << std::left << label + ": ";	std::cin >> input;
+	std::cout << TAB << std::setw(left + 2) << std::left << label + ": "
+		;	std::cin >> input;
 }
 
 void message(string message, unsigned int left){
@@ -89,7 +91,8 @@ void Clube::removeJogadorInterface(){
 
 			input_field("Introduza o nome do Jogador a remover", 0, nome);
 			for (string::iterator it = nome.begin(); it != nome.end(); ++it){
-				if (((*it) < 65 || (*it) > 90) && ((*it) < 97 || (*it) > 122)){
+				// if (((*it) < 65 || (*it) > 90) && ((*it) < 97 || (*it) > 122)){
+				if (!isalpha(*it)) {
 					throw InputInvalido();
 				}
 			}
@@ -101,7 +104,7 @@ void Clube::removeJogadorInterface(){
 
 
 		}
-		catch (InputInvalido &a){
+		catch (InputInvalido &){
 			cerr << "Input invalido. Processo de criacao cancelado." << endl;
 		}
 
@@ -262,7 +265,7 @@ void Clube::criarJogador(){
 
 		message("Jogador Adicionado com Sucesso!", 0);
 	}
-	catch (InputInvalido &a){
+	catch (InputInvalido&){
 		cerr << "Input invalido. Processo de criacao cancelado." << endl;
 	}
 
@@ -349,16 +352,26 @@ void Clube::criarModalidades(){
 
 	}
 
-	catch (ModalidadeInexistente &a){
+	catch (ModalidadeInexistente &){
 		cerr << "Modalidade inexistente. Processo de criacao cancelado." << endl;
 	}
-	catch (SubModalidadeExistente &a){
+	catch (SubModalidadeExistente &){
 		cerr << "Submodalidade ja existe. Processo de criacao cancelado." << endl;
 	}
-	catch (InputInvalido &a){
+	catch (InputInvalido &){
 		cerr << "Input invalido. Processo de criacao cancelado." << endl;
 	}
 }
+
+/*void Clube::criarDespesas(){
+	if (jogadores.empty()){
+		message("Erro, Nenhum Jogador Encontrado. Adicione um novo Jogador!", 0);
+	}
+
+	for (int i = 0; i < jogadores.size(); i++){
+		
+	}
+}*/
 
 
 
@@ -405,7 +418,7 @@ void Clube::criarSocios(){
 
 	}
 
-	catch (InputInvalido &a){
+	catch (InputInvalido &){
 		cerr << "Input invalido. Processo de criacao cancelado." << endl;
 	}
 
@@ -466,13 +479,13 @@ void Clube::atribuirModalidadeaSocio(){
 	catch (SocioInexistente &e){
 		cerr << "Erro! O Socio  " << "(" << e.getName() << ")" << " Nao Existe! Processo de criacao cancelado. " << endl;
 	}
-	catch (InputInvalido &a){
+	catch (InputInvalido &){
 		cerr << "Input invalido. Processo de criacao cancelado." << endl;
 	}
 	catch (istream::failure e){
 		cerr << "Exception Failbit | Badbit Cin " << endl;
 	}
-	catch (SubModalidadeExistente &a){
+	catch (SubModalidadeExistente &){
 		cerr << "Submodalidade ja existe. Processo de criacao cancelado." << endl;
 	}
 }
@@ -791,7 +804,7 @@ ifstream & Clube::lerModalidades(ifstream &i){
 			istream_iterator<string>(),
 			back_inserter(vec));
 
-		modalidades.push_back(new Modalidade(vec[0], atoi(vec[1].c_str())));
+		modalidades.push_back(new Modalidade(vec[0], float(atof(vec[1].c_str()))));
 	}
 
 	return i;
