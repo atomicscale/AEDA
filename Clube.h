@@ -85,6 +85,9 @@ public:
 	ifstream & lerJogadores(ifstream &i);
 	ofstream & gravarModalidades(ofstream &o);
 	ifstream & lerModalidades(ifstream &i);
+	ofstream & gravarSocios(ofstream &o);
+	ifstream & lerSocios(ifstream &i);
+
 	void clubeInterface();
 	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }

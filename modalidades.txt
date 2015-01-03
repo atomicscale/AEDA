@@ -1,4 +1,3 @@
 Nome                Quota 
-lol                 15    0         
 dsfd                34    0         
 lol                 134   0         

@@ -74,6 +74,7 @@
     <ClCompile Include="Clube.cpp" />
     <ClCompile Include="Despesa.cpp" />
     <ClCompile Include="Jogador.cpp" />
+    <ClCompile Include="Lugar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modalidade.cpp" />
     <ClCompile Include="Pessoa.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="insertionSort.h" />
     <ClInclude Include="Jogador.h" />
+    <ClInclude Include="Lugar.h" />
     <ClInclude Include="Modalidade.h" />
     <ClInclude Include="Pessoa.h" />
     <ClInclude Include="sequentialSearch.h" />

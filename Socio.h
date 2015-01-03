@@ -34,7 +34,13 @@ public:
 	/*
 	 * @brief Print Socio
 	 */
+<<<<<<< HEAD
 	string imprime() const;
+=======
+	void imprime();
+
+	ofstream& save(ofstream &o);
+>>>>>>> FETCH_HEAD
 };
 
 

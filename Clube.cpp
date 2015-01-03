@@ -695,17 +695,21 @@ void Clube::listModalidades(){
 		vector<pair<string, unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string, unsigned int>));
 
 		createTableM("Lista de Modalidades", colunas, modalidades);
-		/*for (unsigned int i = 0; i < modalidades.size(); i++){
-			modalidades[i]->ImprimeM();
-			cout << std::endl;
-			}*/
 	}
 }
 void Clube::listSocios()
 {
-	for (unsigned int i = 0; i < socios.size(); i++)
-		socios[i]->imprime();
-	std::cout << std::endl;
+	if (socios.empty()){
+		message("Erro, Nenhum Socio Encontrado. Adicione um Novo Socio!", 0);
+	}
+	else
+	{
+		pair<string, unsigned int> cols[] = { make_pair("Nome", 20), make_pair("Idade", 6), make_pair("Sexo", 10), make_pair("Nif", 10), make_pair("Prazo", 8), make_pair("N. Modal.", 9) };
+		vector<pair<string, unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string, unsigned int>));
+
+		createTable("Lista de Socios", colunas, socios);
+
+	}
 }
 
 void Clube::listDespesas(){
@@ -717,23 +721,29 @@ void Clube::listDespesas(){
 void Clube::saveInfo(){
 	ofstream jogadores_file("jogadores.txt");
 	ofstream modalidades_file("modalidades.txt");
+	ofstream socios_file("socios.txt");
 
 	gravarJogadores(jogadores_file);
 	gravarModalidades(modalidades_file);
+	gravarSocios(socios_file);
 
 	jogadores_file.close();
 	modalidades_file.close();
+	socios_file.close();
 }
 
 void Clube::loadInfo(){
 	ifstream jogadores_file("jogadores.txt");
 	ifstream modalidades_file("modalidades.txt");
+	ifstream socios_file("socios.txt");
 
 	lerJogadores(jogadores_file);
 	lerModalidades(modalidades_file);
+	lerSocios(socios_file);
 
 	jogadores_file.close();
 	modalidades_file.close();
+	socios_file.close();
 }
 
 ifstream & Clube::lerJogadores(ifstream &i){
@@ -808,6 +818,43 @@ ifstream & Clube::lerModalidades(ifstream &i){
 	}
 
 	return i;
+}
+
+ifstream & Clube::lerSocios(ifstream &i){
+	std::string temp;
+	std::vector<std::string> vec;
+	istringstream iss;
+
+	getline(i, temp);
+
+	while (getline(i, temp)){
+
+		vec.clear();
+
+		iss = istringstream(temp);
+
+		copy(istream_iterator<string>(iss),
+			istream_iterator<string>(),
+			back_inserter(vec));
+
+		socios.push_back(new Socio(vec[0], atoi(vec[1].c_str()), vec[3], atoi(vec[2].c_str()), atoi(vec[4].c_str())));
+	}
+
+	return i;
+}
+
+ofstream & Clube::gravarSocios(ofstream &o){
+	o << setw(20) << std::left << "Nome"
+		<< setw(6) << std::left << "Idade"
+		<< setw(10) << std::left << "Sexo"
+		<< setw(10) << std::left << "Nif"
+		<< setw(8) << std::left << "Prazo"
+		<< setw(9) << std::left << "N. Modal." << std::endl;
+
+	for (unsigned int i(0); i < socios.size(); i++){
+		socios[i]->save(o);
+	}
+	return o;
 }
 
 
