@@ -878,7 +878,7 @@ void Clube::clubeInterface()
 		std::cout << TAB << "9. Ver Socios Existentes" << std::endl;
 		std::cout << TAB << "10. Atribuir a Socio uma modalidade" << std::endl;
 		std::cout << TAB << "11. Apagar Socio" << std::endl;
-		std::cout << TAB << "12. Manutencao de Quotas" << std::endl;
+		std::cout << TAB << "12. Gestao Desportiva" << std::endl;
 		std::cout << TAB << "13. Manutencao de Despesas" << std::endl;
 		std::cout << TAB << "14. Sair" << std::endl;
 		std::cout << TAB << std::endl;
@@ -934,7 +934,7 @@ void Clube::clubeInterface()
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 12:
-				//listQuotas;
+				//gestaoDesportiva();
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 13:
