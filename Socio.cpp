@@ -41,7 +41,16 @@ void Socio::imprime(){
 		<< vericalSeparator << setw(10) << std::left << Socio::getNif()
 		<< vericalSeparator << setw(8) << std::left << Socio::getPrazo()  
 		<< vericalSeparator << setw(9) << std::left << Socio::getNModalidade() << vericalSeparator << std::endl;
-	/*std::cout << "Nome : " << getNome() << std::endl;
-	std::cout << "Mensalidade: " << getMensalidade() << std::endl;
-	std::cout << "Modalidades: " << nomeModalidades()  << std::endl;*/
+}
+
+ofstream & Socio::save(ofstream &o){
+
+	o << setw(20) << std::left << Socio::getNome()
+		<< setw(6) << std::left <<	Socio::getIdade()
+		<< setw(10) << std::left << Socio::getNif()
+		<< setw(10) << std::left << Socio::getSexo()
+		<< setw(8) << std::left << Socio::getPrazo()
+		<< setw(9) << std::left << Socio::getNModalidade() << std::endl;
+
+	return o;
 }

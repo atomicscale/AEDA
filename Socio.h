@@ -28,6 +28,8 @@ public:
 	 * @brief Print Socio
 	 */
 	void imprime();
+
+	ofstream& save(ofstream &o);
 };
 
 
