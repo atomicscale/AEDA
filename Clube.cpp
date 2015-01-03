@@ -48,25 +48,6 @@ void Clube::Imprime(){
 	std::cout << "Saldo -> " << saldo << std::endl;
 }
 
-//////// ADICIONA NOVO JOGADOR ////////
-
-/*void Clube::alocaJogadores(ifstream &isJ) {
-	string nome, sexo;
-
-	int idade, nif, salario, duracao_contrato;
-	while (!isJ.eof()) {
-	getline(isJ, nome);
-	getline(isJ, s);
-	salario = atoi(s.c_str());
-	getline(isJ, d);
-	duracao_contrato = atoi(d.c_str());
-	Jogador *temp = new Jogador(nome, idade, sexo, nif, salario, duracao_contrato);
-	jogadores.push_back(temp);
-	}
-
-	}
-	*/
-//////// REMOVE JOGADOR //////////////
 
 bool Clube::removeJogador(string nome) {
 
@@ -112,12 +93,7 @@ void Clube::removeJogadorInterface(){
 	}
 }
 
-//////// ADICIONA NOVA MODALIDADE //////////
 
-void Clube::alocaModalidade(ifstream &ivM) {
-
-
-}
 
 //////// REMOVE MODALIDADE /////////////
 
@@ -362,17 +338,6 @@ void Clube::criarModalidades(){
 		cerr << "Input invalido. Processo de criacao cancelado." << endl;
 	}
 }
-
-/*void Clube::criarDespesas(){
-	if (jogadores.empty()){
-		message("Erro, Nenhum Jogador Encontrado. Adicione um novo Jogador!", 0);
-	}
-
-	for (int i = 0; i < jogadores.size(); i++){
-		
-	}
-}*/
-
 
 
 
