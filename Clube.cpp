@@ -695,17 +695,21 @@ void Clube::listModalidades(){
 		vector<pair<string, unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string, unsigned int>));
 
 		createTableM("Lista de Modalidades", colunas, modalidades);
-		/*for (unsigned int i = 0; i < modalidades.size(); i++){
-			modalidades[i]->ImprimeM();
-			cout << std::endl;
-			}*/
 	}
 }
 void Clube::listSocios()
 {
-	for (unsigned int i = 0; i < socios.size(); i++)
-		socios[i]->imprime();
-	std::cout << std::endl;
+	if (socios.empty()){
+		message("Erro, Nenhum Socio Encontrado. Adicione um Novo Socio!", 0);
+	}
+	else
+	{
+		pair<string, unsigned int> cols[] = { make_pair("Nome", 20), make_pair("Idade", 6), make_pair("Sexo", 10), make_pair("Nif", 10), make_pair("Prazo", 8), make_pair("N. Modal.", 9) };
+		vector<pair<string, unsigned int>> colunas(cols, cols + sizeof(cols) / sizeof(pair<string, unsigned int>));
+
+		createTable("Lista de Socios", colunas, socios);
+
+	}
 }
 
 void Clube::listDespesas(){

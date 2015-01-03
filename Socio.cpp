@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -32,7 +33,15 @@ double Socio::getMensalidade() {
 }
 
 void Socio::imprime(){
-	std::cout << "Nome : " << getNome() << std::endl;
+	string vericalSeparator(1, (char)186);
+
+	std::cout << vericalSeparator << setw(20) << std::left << Socio::getNome()
+		<< vericalSeparator << setw(6) << std::left << Socio::getIdade()
+		<< vericalSeparator << setw(10) << std::left << Socio::getSexo()
+		<< vericalSeparator << setw(10) << std::left << Socio::getNif()
+		<< vericalSeparator << setw(8) << std::left << Socio::getPrazo()  
+		<< vericalSeparator << setw(9) << std::left << Socio::getNModalidade() << vericalSeparator << std::endl;
+	/*std::cout << "Nome : " << getNome() << std::endl;
 	std::cout << "Mensalidade: " << getMensalidade() << std::endl;
-	std::cout << "Modalidades: " << nomeModalidades()  << std::endl;
+	std::cout << "Modalidades: " << nomeModalidades()  << std::endl;*/
 }
