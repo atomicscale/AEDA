@@ -1,33 +1,40 @@
 #ifndef SOCIO_H_
 #define SOCIO_H_
 
-#include <string>
 #include "Pessoa.h"
+#include "Modalidade.h"
+#include "Reserva.h"
+#include "BST.h"
+#include <string>
+#include <sstream>
+
 
 using namespace std;
 
-class Socio :public Pessoa {
-	double mensalidade;
-	bool dentro_prazo;
+class Socio :	public Pessoa {
+	vector<Modalidade *> modalidades_socio;
+	BST<Reserva> reservas;
 public:
 	/*
 	* @brief constructor with parameters for Socio
 	*/
-	Socio(string nome, int idade, string sexo, int nif, bool dentro_prazo) : Pessoa(nome, idade, sexo, nif){
-		this->dentro_prazo = dentro_prazo;
-	}
-	/*
-	 * @return dentro_prazo
-	 */
-	bool getPrazo() {return dentro_prazo;};
+	Socio(string nome,int idade,string sexo,int nif);
 	/*
 	 * @return mensalidade
 	 */
 	double getMensalidade();
+	string getNome() {return nome;};
+	// ADD
+	bool addReserva(Reserva r);
+	bool addModalidadeSocio(Modalidade *m);
+	// REMOVE
+	bool removeReserva(Reserva r);
+	bool removeModalidadeSocio(Modalidade *m);
+
 	/*
 	 * @brief Print Socio
 	 */
-	void imprime();
+	string imprime() const;
 };
 
 
