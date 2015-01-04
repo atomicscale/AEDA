@@ -1,6 +1,5 @@
 #include "Estadio.h"
 
-
 Estadio::Estadio(unsigned int numero_camarotes, unsigned int numero_lugares){
 	initLugares(numero_camarotes, numero_lugares);
 
@@ -14,14 +13,14 @@ void Estadio::initLugares(unsigned int _c, unsigned int _n){
 
 	for (unsigned int i(0); i < _c; i++, currentNum++){
 		temp << "Cam" << currentNum;
-		lugares.push_back(new Lugar(CAMAROTE, temp.str()));
+		lugares.push_back(Lugar(CAMAROTE, temp.str()));
 		temp.str(std::string());
 		temp.clear();
 	}
 
 	for (unsigned int i(0); i < _n; i++, currentNum++){
 		temp << "L" << currentNum;
-		lugares.push_back(new Lugar(NAO_DEFINIDO, temp.str()));
+		lugares.push_back(Lugar(NAO_DEFINIDO, temp.str()));
 		temp.str(std::string());
 		temp.clear();
 	}
@@ -36,24 +35,52 @@ void Estadio::imprimeLugaresVagos(){
 	message("Lugares Vagos", 20);
 	std::cout << std::endl;
 
-	std::vector<Lugar*>::iterator itr = lugares.begin();
-
+	std::vector<Lugar>::iterator itr = lugares.begin();
 	for (unsigned int n(0); itr != lugares.end(); itr++){
-		std::cout << setw(5) << (*itr)->getNome() << " ";
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);
+
+		if (!(itr->isDisponivel()))
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0C);
+
+		std::cout << setw(5) << (itr)->getNome() << " ";
 
 		n++;
-
-		if ((itr + 1) != lugares.end() && (*itr)->getTipo() != (*(itr + 1))->getTipo()){
-			std::cout << std::endl;
-			n = 0;
-		}
-		else
 		if (n >= 10){
 			std::cout << std::endl;
 			n = 0;
 		}
 	}
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
+}
+
+unsigned int Estadio::lugarDisponivel(std::string nomeLugar){
+	
+	vector<Lugar>::iterator itr = lugares.begin();
+
+	for (; itr != lugares.end(); itr++){
+		if (itr->getNome() == nomeLugar){
+			if (itr->isDisponivel())
+				return 1;
+			else
+				return 0;
+		}
+	}
+
+	return -1;
+}
+
+Lugar* Estadio::getLugar(std::string nomeLugar){
+
+	vector<Lugar>::iterator itr = lugares.begin();
+
+	for (; itr != lugares.end(); itr++){
+		if (itr->getNome() == nomeLugar){
+			return &(*itr);
+		}
+	}
+	return nullptr;
 }
 
 void Estadio::reservarLugar(TipoLugar _t){
@@ -70,7 +97,17 @@ void Estadio::reservarLugar(TipoLugar _t){
 		}
 
 		input_field("Nome Cadeira", 14, nomeLugar);
-	
+
+		if (lugarDisponivel(nomeLugar) == -1){
+			std::cout << "Lugar inexistente, Tente Novamente!" << std::endl;
+			return;
+		}
+		else if (lugarDisponivel(nomeLugar) == 0)		{
+			std::cout << "Lugar ocupado, Tente Novamente!" << std::endl;
+			return;
+		}
+		
+		tesouraria.reservarLugar(nomeSocio, getLugar(nomeLugar), _t);
 }
 
 void Estadio::userCli(){
@@ -96,7 +133,7 @@ void Estadio::userCli(){
 				clube->clubeInterface();
 				break;
 			case 2:
-				reservarLugarCLI();
+				reservasCLI();
 				break;
 			case 3:
 				done = true;
@@ -107,7 +144,7 @@ void Estadio::userCli(){
 	} while (!done);
 }
 
-void Estadio::reservarLugarCLI(){
+void Estadio::reservasCLI(){
 
 	bool done;
 
@@ -138,18 +175,24 @@ void Estadio::reservarLugarCLI(){
 				break;
 			case 2:
 				reservarLugar(CAMAROTE);
+				clearStdInAndPressEnterToContinue();
 				break;
 			case 3:
 				reservarLugar(CATIVO);
+				clearStdInAndPressEnterToContinue();
 				break;
 			case 4:
 				reservarLugar(ANUAL);
+				clearStdInAndPressEnterToContinue();
 				break;
 			case 5:
 				break;
 			case 6:
+				tesouraria.cancelarReservaCli();
+				clearStdInAndPressEnterToContinue();
 				break;
 			case 7:
+				tesouraria.verSocioReservas();
 				break;
 			case 8:
 				done = true;

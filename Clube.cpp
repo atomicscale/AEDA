@@ -287,31 +287,30 @@ void Clube::criarModalidades() {
 
 void Clube::criarSocios() {
 	string nome, sexo;
-	int idade, nif;
+	int idade(0), nif(0);
 	bool dentro_prazo;
 
 	system("cls");
 	try {
 		header("Criar socio", 0);
-		message("Introduza o nome do Socio a atribuir uma modalidade", 0);
-		cin.ignore();
+		message("     Introduza o nome do Socio a atribuir uma modalidade", 0);
 		getline(std::cin, nome);
 		for (string::iterator it = nome.begin(); it != nome.end(); ++it) {
 			if (((*it) < 65 || (*it) > 90) && ((*it) < 97 || (*it) > 122)) {
 				throw InputInvalido();
 			}
 		}
-		input_field("Idade do Socio", 16, idade);
+		input_field("Idade do Socio", 0, idade);
 
 		if (idade == 0)
 			throw InputInvalido();
 
-		input_field("Nif do Socio", 16, nif);
+		input_field("Nif do Socio", 0, nif);
 
 		if (nif == 0)
 			throw InputInvalido();
 
-		input_field("Sexo", 29, sexo);
+		input_field("Sexo(masculino/feminino)", 0, sexo);
 		if (sexo != "masculino" && sexo != "feminino") {
 			throw InputInvalido();
 		}

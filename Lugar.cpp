@@ -3,6 +3,7 @@
 Lugar::Lugar(TipoLugar tipo, std::string nome){
 	i_tipo = tipo;
 	_nome = nome;
+	disponivel = true;
 }
 
 unsigned int Lugar::getCusto(){
@@ -19,4 +20,22 @@ std::string Lugar::getNome(){
 
 Lugar::~Lugar(){
 
+}
+
+bool Lugar::isDisponivel(){
+	return disponivel;
+}
+
+void Lugar::setTipo(TipoLugar _t){
+	i_tipo = _t;
+}
+
+void Lugar::setReservado()
+{
+	disponivel = false;
+}
+
+void Lugar::setNReservado()
+{
+	disponivel = true;
 }

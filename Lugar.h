@@ -26,10 +26,17 @@ public:
 	std::string getNome();
 	std::string  getTipo();
 	unsigned int getCusto();
+	bool isDisponivel();
+
+	void setReservado();
+	void setNReservado();
+
+	void setTipo(TipoLugar);
 
 private:
 	TipoLugar i_tipo;
 	std::string _nome;
+	bool disponivel;
 };
 
 

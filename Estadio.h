@@ -3,6 +3,7 @@
 
 #include "Tesouraria.h"
 #include "Clube.h"
+#include "windows.h"
 
 
 
@@ -20,16 +21,19 @@ public:
 
 	//cli
 	void userCli();
-	void reservarLugarCLI();
+	void reservasCLI();
 
 private:
 
 	void initLugares(unsigned int, unsigned int);
+	unsigned int lugarDisponivel(std::string);
+
+	Lugar* getLugar(std::string);
 
 	Clube *clube;
 
-	std::vector<Lugar*> lugares;
-	//Tesouraria tesouraria;
+	std::vector<Lugar> lugares;
+	Tesouraria tesouraria;
 };
 
 #endif ESTADIO_H_
