@@ -6,6 +6,9 @@
 #include "Jogador.h"
 #include "Exceptions.h"
 #include "Utilities.h"
+#include "Fornecedor.h"
+#include <queue>
+#include <iostream>
 
 
 using namespace std;
@@ -17,15 +20,23 @@ class Clube  {
 	vector<Jogador*> jogadores;
 	vector<Modalidade*> modalidades;
 	vector<Socio*> socios;
+	priority_queue<Fornecedor> fornecedores;
 	void criarJogador();
 	void listJogador();
 	void removeJogadorInterface();
+
 	void criarModalidades();
 	void listModalidades();
 	void removeModalidadeInterface();
+
 	void criarSocios();
 	void listSocios();
 	void removeSocioInterface();
+
+	void criarFornecedor();
+	void listFornecedores();
+	void removeFornecedorInterface();
+
 	void atribuirModalidadeaSocio();
 	void atribuirModalidadeaJogador();
 	
@@ -70,6 +81,10 @@ public:
 	 * @return the players that play mod
 	 */
 	vector<Jogador *> getJogadoresSub(string mod);
+	bool removeFornecedor(const string nome);
+	void setFornecedores(priority_queue<Fornecedor> f){
+		this->fornecedores = f;
+	};
 	void Imprime();
 	/*
 	 * @brief Print
@@ -81,6 +96,8 @@ public:
 	ifstream & lerModalidades(ifstream &i);
 	ofstream & gravarSocios(ofstream &o);
 	ifstream & lerSocios(ifstream &i);
+	ifstream & lerFornecedores(ifstream & i);
+	ofstream & gravarFornecedores(ofstream & o);
 
 	void clubeInterface();
 	vector<Jogador*>& getJogadores() { return jogadores;  }

@@ -6,32 +6,32 @@
 using namespace std;
 
 class Fornecedor : public Pessoa {
-	string denominacao; // tipo de fornecedor
 	string servicos_prestados;
-	int localizacao;
+	int distancia;
 public:
 	Fornecedor(string nome, int idade, string sexo, int nif);
 	// GET
-	string getDenomincao() {return denominacao;};
-	string getServicos() {return servicos_prestados;};
-	string getLocalizacao() {return localizacao;};
+	string getServicos()  const {return servicos_prestados;};
+	int getLocalizacao() const{return distancia;};
 	// SET
-	string setDenominacao(string d) {this->denominacao = d;};
-	string setServicos(string s) {this->servicos_prestados = s;};
-	string setLocalizacao(string l) {this->localizacao = l;};
+	void setServicos(string s) {this->servicos_prestados = s;};
+	void setLocalizacao(int l) {this->distancia = l;};
 	// OPERATORS
 	bool operator < (const Fornecedor &f) const{
-		if(localizacao < f.localizacao){
+		if(distancia < f.distancia){
 			return true;
 		}
 		else return false;
 	};
-	bool operator == (const Fornecedor &f) const{
-		if(nome == f.nome){
-			return true;
-		}
-		else return false;
-	};
+	// Print
+	void imprime(){
+		cout << "Nome: " << nome << endl;
+		cout << "Idade: " << idade << endl;
+		cout << "Sexo: " << sexo << endl;
+		cout << "NIF: " << nif << endl;
+		cout << "Servicos Prestados: " << servicos_prestados << endl;
+		cout << "Localizacao: " << distancia << " (km)" << endl;
+ 	};
 };
 
 
