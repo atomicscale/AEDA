@@ -1057,16 +1057,95 @@ ofstream & Clube::gravarFornecedores(ofstream & o) {
 
 	o << setw(20) << std::left << "Nome" << setw(6) << std::left << "Idade"
 			<< setw(10) << std::left << "Nif" << setw(10) << std::left << "Sexo"
-			<< setw(8) << std::left << "Servicos prestados" << setw(9) << std::left
-			<< "Localizacao" << std::endl;
+			<< setw(8) << std::left << "Servicos prestados" << setw(9)
+			<< std::left << "Localizacao" << std::endl;
 
-	while(!temp.empty()){
+	while (!temp.empty()) {
 		// temp.top().save(o);   Nao percebi o save
 		temp.pop();
 	}
 
-
 	return o;
 
+}
+
+void Clube::addSocioEmAtraso() {
+	string nome, sexo;
+	int idade, nif;
+
+	system("cls");
+	try {
+		header("Adicionar Socio com quotas em atraso", 0);
+		message("Introduza o nome do Socio", 0);
+		cin.ignore();
+		getline(std::cin, nome);
+		for (string::iterator it = nome.begin(); it != nome.end(); ++it) {
+			if (((*it) < 65 || (*it) > 90) && ((*it) < 97 || (*it) > 122)) {
+				throw InputInvalido();
+			}
+		}
+		input_field("Idade do Socio", 0, idade);
+
+		if (idade == 0 || idade < 0)
+			throw InputInvalido();
+
+		input_field("Nif do Socio", 0, nif);
+
+		if (nif == 0)
+			throw InputInvalido();
+
+		input_field("Sexo", 29, sexo);
+		if (sexo != "masculino" && sexo != "feminino") {
+			throw InputInvalido();
+		}
+
+		socios_fora_prazo.insert(Socio(nome, idade, sexo, nif));
+
+	}
+
+	catch (InputInvalido &) {
+		cerr << "Input invalido. Processo de criacao cancelado." << endl;
+	}
+
+	// need a exception Fornecedor invalido
+
+}
+
+void Clube::listSociosEmAtraso() {
+	if (socios_fora_prazo.empty()) {
+		message(
+				"Erro, Nao existem socios com quotas em falta!",
+				0);
+	} else {
+		HashSocios s = socios_fora_prazo;
+		vector<Socio *> vec;
+		for(HashSocios::const_iterator it = socios_fora_prazo.begin(); it != socios_fora_prazo.end(); it++){
+			Socio* s;
+			s->setNome(it->getNome());
+			s->setIdade(it->getIdade());
+			s->setNif(it->getNif());
+			s->setSexo(it->getSexo());
+			vec.push_back(s);
+
+		}
+
+		pair<string, unsigned int> cols[] = { make_pair("Nome", 20), make_pair(
+				"Quota", 6), make_pair("Sub-Modalidades", 20) };
+		vector<pair<string, unsigned int> > colunas(cols,
+				cols + sizeof(cols) / sizeof(pair<string, unsigned int> ));
+
+		createTableM("Lista de Socios com quotas em falta!", colunas, vec);
+	}
+
+}
+
+bool Clube::removeSocioAtraso(string nome){
+	for(HashSocios::const_iterator it = socios_fora_prazo.begin(); it != socios_fora_prazo.end(); it++){
+		if(it->getNome() == nome){
+			socios_fora_prazo.erase(it);
+			return true;
+		}
+	}
+	return false;
 }
 
