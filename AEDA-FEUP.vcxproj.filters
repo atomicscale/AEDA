@@ -13,12 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Header Files\Estadio">
+      <UniqueIdentifier>{c4ef263f-f372-4023-af15-def6837d9554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Estadio">
+      <UniqueIdentifier>{9d6723d7-a283-46b0-911d-bb2a242895de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Clube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Despesa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Jogador.cpp">
@@ -39,12 +42,18 @@
     <ClCompile Include="Lugar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Estadio.cpp">
+      <Filter>Source Files\Estadio</Filter>
+    </ClCompile>
+    <ClCompile Include="Tesouraria.cpp">
+      <Filter>Source Files\Estadio</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Despesa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="insertionSort.h">
@@ -69,6 +78,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lugar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Estadio.h">
+      <Filter>Header Files\Estadio</Filter>
+    </ClInclude>
+    <ClInclude Include="Tesouraria.h">
+      <Filter>Header Files\Estadio</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
