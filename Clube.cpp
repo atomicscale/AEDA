@@ -1,41 +1,7 @@
 #include "Clube.h"
-#include <vector>
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <ctime>
-#include <iomanip>
-#include <sstream>
-#include <stdlib.h>
-#include <stdio.h>
-#include <cctype>
-
-#define TAB "     "
-
-using namespace std;
-
-void clear(){
-	std::cin.clear();
-	std::cin.ignore(1000, '\n');
-}
 
 
-void header(string title, unsigned int left){
-	std::cout << setw(left) << std::left << TAB << std::endl << title << std::endl << std::endl;
-}
-
-template<typename T>
-void input_field(string label, unsigned int left, T &input){
-	clear();
-	std::cout << TAB << std::setw(left + 2) << std::left << label + ": "
-		;	std::cin >> input;
-}
-
-void message(string message, unsigned int left){
-	std::cout << std::endl << setw(left) << std::left << message << std::endl;
-}
-
-Clube::Clube(string nome, string presidente, int saldo) : despesa(this) {
+Clube::Clube(string nome, string presidente, int saldo) {
 	this->nome = nome;
 	this->presidente = presidente;
 	this->saldo = saldo;
@@ -183,13 +149,6 @@ vector<Jogador *> Clube::getJogadoresSub(string mod){
 	return result;
 }
 
-void Clube::clearStdInAndPressEnterToContinue()
-{
-	clear();
-	message("Press Enter to continue...", 0);
-	std::cin.get();
-	std::cout << std::endl;
-}
 
 void Clube::criarJogador(){
 	std::string name, sexo;
@@ -677,11 +636,7 @@ void Clube::listSocios()
 	}
 }
 
-void Clube::listDespesas(){
-	for (unsigned int i = 0; i < despesas.size(); i++)
-		despesas[i]->Imprime();
-	std::cout << std::endl;
-}
+
 
 void Clube::saveInfo(){
 	ofstream jogadores_file("jogadores.txt");
@@ -879,21 +834,21 @@ void Clube::clubeInterface()
 		std::cout << std::setw(12) << std::left << "Nome: " << nome << std::endl;
 		std::cout << std::setw(12) << std::left << "Presidente: " << presidente << std::endl;
 		std::cout << std::setw(12) << std::left << "Saldo: " << saldo << " $" << std::endl << std::endl;
-		std::cout << TAB << "1. Criar Jogadores" << std::endl;
-		std::cout << TAB << "2. Ver Jogadores Existentes" << std::endl;
-		std::cout << TAB << "3. Apagar Jogadores" << std::endl;
-		std::cout << TAB << "4. Criar Modalidades" << std::endl;
-		std::cout << TAB << "5. Atribuir a Jogador uma modalidade" << std::endl;
-		std::cout << TAB << "6. Ver Modalidades Existentes" << std::endl;
-		std::cout << TAB << "7. Apagar Modalidades" << std::endl;
-		std::cout << TAB << "8. Criar Socio" << std::endl;
-		std::cout << TAB << "9. Ver Socios Existentes" << std::endl;
-		std::cout << TAB << "10. Atribuir a Socio uma modalidade" << std::endl;
-		std::cout << TAB << "11. Apagar Socio" << std::endl;
-		std::cout << TAB << "12. Gestao Desportiva" << std::endl;
-		std::cout << TAB << "13. Manutencao de Despesas" << std::endl;
-		std::cout << TAB << "14. Sair" << std::endl;
-		std::cout << TAB << std::endl;
+		std::cout << tab() << "1. Criar Jogadores" << std::endl;
+		std::cout << tab() << "2. Ver Jogadores Existentes" << std::endl;
+		std::cout << tab() << "3. Apagar Jogadores" << std::endl;
+		std::cout << tab() << "4. Criar Modalidades" << std::endl;
+		std::cout << tab() << "5. Atribuir a Jogador uma modalidade" << std::endl;
+		std::cout << tab() << "6. Ver Modalidades Existentes" << std::endl;
+		std::cout << tab() << "7. Apagar Modalidades" << std::endl;
+		std::cout << tab() << "8. Criar Socio" << std::endl;
+		std::cout << tab() << "9. Ver Socios Existentes" << std::endl;
+		std::cout << tab() << "10. Atribuir a Socio uma modalidade" << std::endl;
+		std::cout << tab() << "11. Apagar Socio" << std::endl;
+		std::cout << tab() << "12. Gestao Desportiva" << std::endl;
+		std::cout << tab() << "13. Manutencao de Despesas" << std::endl;
+		std::cout << tab() << "14. Sair" << std::endl;
+		std::cout << tab() << std::endl;
 
 		int input;
 		std::cout << "Escolha uma opcao: ";

@@ -1,14 +1,12 @@
 #ifndef CLUBE_H_
 #define CLUBE_H_
 
-#include <vector>
-#include <string>
-#include <iostream>
+#include "Socio.h"
 #include "Modalidade.h"
 #include "Jogador.h"
-#include "Socio.h"
-#include "Despesa.h"
 #include "Exceptions.h"
+#include "Utilities.h"
+
 
 using namespace std;
 
@@ -16,11 +14,9 @@ class Clube  {
 	string nome;
 	string presidente;
 	int saldo;
-	Despesa despesa;
 	vector<Jogador*> jogadores;
 	vector<Modalidade*> modalidades;
 	vector<Socio*> socios;
-	vector <Despesa*> despesas;
 	void criarJogador();
 	void listJogador();
 	void removeJogadorInterface();
@@ -32,12 +28,9 @@ class Clube  {
 	void removeSocioInterface();
 	void atribuirModalidadeaSocio();
 	void atribuirModalidadeaJogador();
-	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existant
+	
 	int ModalidadeIndex(string modal);
 	int JogadorIndex(string nomeJogador);
-	//void criarDespesas();
-	void listDespesas();
-	//void listQuotas();
 	void loadInfo();
 	void saveInfo();
 	
@@ -81,6 +74,7 @@ public:
 	/*
 	 * @brief Print
 	 */
+	int SocioIndex(string nomeSocio); // return index of Socio -1 if non existant
 	ofstream & gravarJogadores(ofstream &o);
 	ifstream & lerJogadores(ifstream &i);
 	ofstream & gravarModalidades(ofstream &o);
@@ -89,7 +83,6 @@ public:
 	ifstream & lerSocios(ifstream &i);
 
 	void clubeInterface();
-	void clearStdInAndPressEnterToContinue();
 	vector<Jogador*>& getJogadores() { return jogadores;  }
 
 };

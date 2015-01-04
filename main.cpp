@@ -1,16 +1,12 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include "Clube.h"
+#include "Estadio.h"
 
 using namespace std;
 
 int main() {
-	
-	
-	Clube a("F.C.AEDA 2014", "Vitor Luis Fidalgo", 10000);
-	a.clubeInterface();
+
+	Estadio e(20,40);
+
+	e.userCli();
 
 	return 0;
 }
