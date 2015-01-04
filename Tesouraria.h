@@ -10,9 +10,12 @@
 class Tesouraria{
 public:
 	Tesouraria();
+
+	std::map <std::string, std::vector<Lugar*>>* getLugaresReservados(){ return &lugares_reservados; }
+
 	void reservarLugar(std::string, Lugar*, TipoLugar);
 	void cancelarReserva(std::string, Lugar*);
-	void alterarLugar(Lugar*,Lugar*);
+	void alterarLugar(std::string, Lugar*, Lugar*, TipoLugar);
 
 	void verSocioReservas();
 	void cancelarReservaCli();

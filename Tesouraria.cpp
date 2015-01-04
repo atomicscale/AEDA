@@ -126,7 +126,6 @@ Lugar* Tesouraria::lugarReservado(std::string nomeSocio,std::string nomeLugar){
 
 void Tesouraria::cancelarReservaCli(){
 	std::string nomeSocio, nomeLugar;
-	int idade(0), nif(0), salario(0), duracao_contrato(0);
 
 
 	header("Cancelar Lugar ", 0);
@@ -147,4 +146,18 @@ void Tesouraria::cancelarReservaCli(){
 
 	cancelarReserva(nomeSocio, lugarReservado(nomeSocio,nomeLugar));
 }
+
+void Tesouraria::alterarLugar(std::string nomeSocio, Lugar* lugarRemover, Lugar* lugarAdicionar,TipoLugar _t)
+{
+	if (lugares_reservados.find(nomeSocio) != lugares_reservados.end()){
+		if (lugarReservado(nomeSocio, lugarRemover->getNome()) == nullptr)
+			return;
+
+		cancelarReserva(nomeSocio, lugarRemover);
+		reservarLugar(nomeSocio, lugarAdicionar, _t);
+	}
+}
+
+
+
 

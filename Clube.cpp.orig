@@ -294,7 +294,6 @@ void Clube::criarSocios() {
 	try {
 		header("Criar socio", 0);
 		message("     Introduza o nome do Socio a atribuir uma modalidade", 0);
-		cin.ignore();
 		getline(std::cin, nome);
 		for (string::iterator it = nome.begin(); it != nome.end(); ++it) {
 			if (((*it) < 65 || (*it) > 90) && ((*it) < 97 || (*it) > 122)) {
@@ -311,8 +310,14 @@ void Clube::criarSocios() {
 		if (nif == 0)
 			throw InputInvalido();
 
-		input_field("Sexo(masculino/feminino)", 0, sexo);
+<<<<<<< HEAD
+		input_field("Sexo", 29, sexo);
 		if (sexo != "masculino" && sexo != "feminino") {
+=======
+
+		input_field("Sexo(masculino/feminino)", 0, sexo);
+		if (sexo != "masculino" && sexo != "feminino"){
+>>>>>>> Done
 			throw InputInvalido();
 		}
 
@@ -549,7 +554,7 @@ void createTableM(string tableName, vector<pair<string, unsigned int> > colunas,
 			<< string(1, (char) 185) << std::endl;
 
 	for (unsigned int i = 0; i < content.size(); i++) {
-//		content[i]->ImprimeM();
+		content[i]->ImprimeM();
 	}
 
 	std::cout << string(1, (char) 200);
@@ -842,7 +847,9 @@ void Clube::clubeInterface() {
 		std::cout << tab() << "10. Atribuir a Socio uma modalidade"
 				<< std::endl;
 		std::cout << tab() << "11. Apagar Socio" << std::endl;
-		std::cout << tab() << "12. Sair" << std::endl;
+		std::cout << tab() << "12. Gestao Desportiva" << std::endl;
+		std::cout << tab() << "13. Manutencao de Despesas" << std::endl;
+		std::cout << tab() << "14. Sair" << std::endl;
 		std::cout << tab() << std::endl;
 
 		int input;
@@ -896,6 +903,14 @@ void Clube::clubeInterface() {
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 12:
+				//gestaoDesportiva();
+				clearStdInAndPressEnterToContinue();
+				break;
+			case 13:
+				//listDespesas();
+				clearStdInAndPressEnterToContinue();
+				break;
+			case 14:
 				message("Fechar Programa.", 0);
 				saveInfo();
 				done = true;
@@ -1089,7 +1104,7 @@ void Clube::addSocioEmAtraso() {
 			throw InputInvalido();
 		}
 
-		socios_fora_prazo.insert(Socio(nome, idade, sexo, nif,1));
+		socios_fora_prazo.insert(Socio(nome, idade, sexo, nif));
 
 	}
 
@@ -1110,7 +1125,11 @@ void Clube::listSociosEmAtraso() {
 		HashSocios s = socios_fora_prazo;
 		vector<Socio *> vec;
 		for(HashSocios::const_iterator it = socios_fora_prazo.begin(); it != socios_fora_prazo.end(); it++){
-			Socio* s = new Socio(it->getNome(), it->getIdade(), it->getSexo(), it->getNif(), 1);
+			Socio* s;
+			s->setNome(it->getNome());
+			s->setIdade(it->getIdade());
+			s->setNif(it->getNif());
+			s->setSexo(it->getSexo());
 			vec.push_back(s);
 
 		}

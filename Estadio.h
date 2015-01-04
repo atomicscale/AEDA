@@ -22,6 +22,7 @@ public:
 	//cli
 	void userCli();
 	void reservasCLI();
+	void alterarReservaCli();
 
 private:
 

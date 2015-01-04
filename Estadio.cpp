@@ -186,6 +186,8 @@ void Estadio::reservasCLI(){
 				clearStdInAndPressEnterToContinue();
 				break;
 			case 5:
+				alterarReservaCli();
+				clearStdInAndPressEnterToContinue();
 				break;
 			case 6:
 				tesouraria.cancelarReservaCli();
@@ -202,3 +204,51 @@ void Estadio::reservasCLI(){
 
 		} while (!done);
 	}
+
+
+void Estadio::alterarReservaCli(){
+	std::string nomeSocio, nomeLugarRemover, nomelugarAdicionar, tipo_lugar;
+	TipoLugar _t;
+
+	header("Cancelar Lugar ", 0);
+	input_field("Nome Socio", 14, nomeSocio);
+
+	if (tesouraria.getLugaresReservados()->find(nomeSocio) == tesouraria.getLugaresReservados()->end()){
+		std::cout << "Socio inexistente" << std::endl;
+		return;
+	}
+
+	input_field("Nome Lugar a remover", 14, nomeLugarRemover);
+
+	if (tesouraria.lugarReservado(nomeSocio, nomeLugarRemover) == nullptr){
+		std::cout << "Reserva inexistente" << std::endl;
+		return;
+	}
+
+	input_field("Nome Novo Lugar ", 14, nomelugarAdicionar);
+
+	if (tesouraria.lugarReservado(nomeSocio, nomelugarAdicionar) != nullptr){
+		std::cout << "Lugar ocupado" << std::endl;
+		return;
+	}
+
+	if (nomelugarAdicionar[0] == 'L'){
+		input_field("Tipo lugar ", 14, tipo_lugar);
+
+		if (tipo_lugar == "Cativo")
+			_t = CATIVO;
+		else
+		if (tipo_lugar == "Anual")
+			_t = ANUAL;
+		else
+		if (tesouraria.lugarReservado(nomeSocio, nomelugarAdicionar) != nullptr){
+			std::cout << "Tipo invalido" << std::endl;
+			return;
+		}
+	}
+	else
+		_t = CAMAROTE;
+
+
+	tesouraria.alterarLugar(nomeSocio, getLugar(nomeLugarRemover), getLugar(nomelugarAdicionar), _t);
+}

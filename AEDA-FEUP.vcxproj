@@ -73,6 +73,7 @@
   <ItemGroup>
     <ClCompile Include="Clube.cpp" />
     <ClCompile Include="Estadio.cpp" />
+    <ClCompile Include="Fornecedor.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Lugar.cpp" />
     <ClCompile Include="main.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Clube.h" />
     <ClInclude Include="Estadio.h" />
     <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="Fornecedor.h" />
     <ClInclude Include="insertionSort.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Lugar.h" />

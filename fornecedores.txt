@@ -1,0 +1,1 @@
+Nome                Idade Nif       Sexo      Servicos prestadosLocalizacao

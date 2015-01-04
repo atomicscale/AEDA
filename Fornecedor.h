@@ -2,6 +2,7 @@
 #define FORNECEDOR_H_
 
 #include "Pessoa.h"
+#include "Utilities.h"
 
 using namespace std;
 
