@@ -3,55 +3,34 @@
 
 #include <string>
 
-using namespace std;
+struct t_lugar{
+	std::string nome;
+	unsigned int custo;
+
+	t_lugar(std::string _n, unsigned int _c){
+		nome  = _n;
+		custo = _c;
+	}
+};
+
+static t_lugar t_lugar_info[4] = { { "Camarote", 500 }, { "Cativo", 100 }, { "Anual", 60 }, {"Nao Definido", 0} };
+
+enum TipoLugar{ CAMAROTE, CATIVO, ANUAL, NAO_DEFINIDO };
 
 class Lugar
 {
-private:
-	string tipo;
-	unsigned int custo;
-	unsigned int mes;
 public:
-	Lugar(string tipo, unsigned int custo, unsigned int mes){
-		this->tipo = tipo;
-		this->custo = custo;
-		this->mes = mes;
-
-	};
+	Lugar(TipoLugar, std::string);
 	~Lugar();
 
-	string getTipo(){ return tipo; }
-	unsigned int getCusto(){ return custo; }
-	unsigned int getMes(){ return mes; }
+	std::string getNome();
+	std::string  getTipo();
+	unsigned int getCusto();
 
-
+private:
+	TipoLugar i_tipo;
+	std::string _nome;
 };
 
 
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif /* LUGAR_H_ */
+#endif LUGAR_H_
