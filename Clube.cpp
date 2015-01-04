@@ -757,7 +757,7 @@ ifstream & Clube::lerSocios(ifstream &i){
 			istream_iterator<string>(),
 			back_inserter(vec));
 
-		socios.push_back(new Socio(vec[0], atoi(vec[1].c_str()), vec[3], atoi(vec[2].c_str()), atoi(vec[4].c_str())));
+		socios.push_back(new Socio(vec[0], atoi(vec[1].c_str()), vec[3], atoi(vec[2].c_str()), (vec[4].c_str()=="true" ? 1 : 0)));
 	}
 
 	return i;
